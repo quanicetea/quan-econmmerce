@@ -1,0 +1,229 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "VMMS API",
+        "version": "1.0.0"
+    },
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/countries": {
+            "get": {
+                "tags": [
+                    "Country"
+                ],
+                "summary": "",
+                "description": "Target List Country | Authorization value: Bearer (Your access_token key in CMS) ",
+                "operationId": "api.countries",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "401": {
+                        "description": "unauthorized"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/create": {
+            "post": {
+                "tags": [
+                    "Country"
+                ],
+                "summary": "",
+                "description": "Target Create a Country | Authorization value: Bearer (Your Access_token key in CMS) ",
+                "operationId": "api.countries.create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Target Create a Country | Authorization value: Bearer (Your Access_token key in CMS) ",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Country"
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "unauthorized"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/detail": {
+            "get": {
+                "tags": [
+                    "Country"
+                ],
+                "summary": "",
+                "description": "Target Detail Country | Authorization value: Bearer (Your access_token key in CMS) ",
+                "operationId": "api.countries.show",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Country ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "unauthorized"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/update": {
+            "put": {
+                "tags": [
+                    "Country"
+                ],
+                "summary": "",
+                "description": "Target Update a Country | Authorization value: Bearer (Your Access_token key in CMS) ",
+                "operationId": "api.countries.update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Target Update a Country | Authorization value: Bearer (Your Access_token key in CMS) ",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateCountry"
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "unauthorized"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/delete": {
+            "delete": {
+                "tags": [
+                    "Country"
+                ],
+                "summary": "",
+                "description": "Target Delete a Country | Authorization value: Bearer (Your access_token key in CMS) ",
+                "operationId": "api.countries.destroy",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Country ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "unauthorized"
+                    },
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Country": {
+            "properties": {
+                "country_code": {
+                    "type": "string",
+                    "format": "int64"
+                },
+                "country_name": {
+                    "type": "string",
+                    "format": "int64"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Login"
+            }
+        },
+        "UpdateCountry": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "int64",
+                    "example": 1
+                },
+                "country_code": {
+                    "type": "string",
+                    "format": "int64"
+                },
+                "country_name": {
+                    "type": "string",
+                    "format": "int64"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Login"
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

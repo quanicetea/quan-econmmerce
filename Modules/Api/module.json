@@ -1,0 +1,18 @@
+{
+    "name": "Api",
+    "alias": "api",
+    "description": "",
+    "keywords": [],
+    "version": "1.0.0",
+	"active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Api\\Providers\\ApiServiceProvider",
+        "Modules\\Api\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        
+    ],
+    "requires": []
+}
