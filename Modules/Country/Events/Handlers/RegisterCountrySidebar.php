@@ -36,36 +36,36 @@ class RegisterCountrySidebar implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('country::countries.title.countries'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
-                $item->authorize(
-                     /* append */
-                );
-                $item->item(trans('country::countries.title.countries'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.country.country.create');
-                    $item->route('admin.country.country.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('country.countries.index')
-                    );
-                });
-                $item->item(trans('country::quocgias.title.quocgias'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.country.quocgia.create');
-                    $item->route('admin.country.quocgia.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('country.quocgias.index')
-                    );
-                });
-// append
+//         $menu->group(trans('core::sidebar.content'), function (Group $group) {
+//             $group->item(trans('country::countries.title.countries'), function (Item $item) {
+//                 $item->icon('fa fa-copy');
+//                 $item->weight(10);
+//                 $item->authorize(
+//                      /* append */
+//                 );
+//                 $item->item(trans('country::countries.title.countries'), function (Item $item) {
+//                     $item->icon('fa fa-copy');
+//                     $item->weight(0);
+//                     $item->append('admin.country.country.create');
+//                     $item->route('admin.country.country.index');
+//                     $item->authorize(
+//                         $this->auth->hasAccess('country.countries.index')
+//                     );
+//                 });
+//                 $item->item(trans('country::quocgias.title.quocgias'), function (Item $item) {
+//                     $item->icon('fa fa-copy');
+//                     $item->weight(0);
+//                     $item->append('admin.country.quocgia.create');
+//                     $item->route('admin.country.quocgia.index');
+//                     $item->authorize(
+//                         $this->auth->hasAccess('country.quocgias.index')
+//                     );
+//                 });
+// // append
 
 
-            });
-        });
+//             });
+//         });
 
         return $menu;
     }

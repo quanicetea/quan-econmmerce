@@ -7,4 +7,5 @@ use Modules\Core\Repositories\BaseRepository;
 interface ProductRepository extends BaseRepository
 {
     public function getData($request);
+    public function getNewProducts();
 }

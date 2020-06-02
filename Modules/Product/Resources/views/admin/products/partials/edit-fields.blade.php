@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xs-4">
+        <div class="col-xs-4">
             <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                 <label class="ccontrol-label ">{{ trans('product::products.form.image') }} </label><span class="required" style="color: red;" aria-required="true"> * </span>
                 <div class="multi-upload-file multi-upload-file3">
@@ -66,7 +66,7 @@
                 </div>
                 {!! $errors->first('image', '<span class="help-block">:message</span>') !!}
             </div>
-        </div> --}}
+        </div>
     </div>
     <div class="row" style="padding-left: 15px; padding-right: 15px;">
         @editor('description',trans('product::products.form.description'),old('description', $product->description))

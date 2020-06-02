@@ -12,6 +12,8 @@ use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Category\Repositories\CategoryRepository;
 use Modules\Unit\Repositories\UnitRepository;
 use Yajra\DataTables\DataTables;
+use Auth;
+
 
 class ProductController extends AdminBaseController
 {
@@ -56,9 +58,10 @@ class ProductController extends AdminBaseController
      */
     public function create()
     {
+        $user = Auth::user();
         $categories = $this->category->all();
         $unit = $this->unit->all();
-        return view('product::admin.products.create', compact('categories', 'unit'));
+        return view('product::admin.products.create', compact('categories', 'unit','user'));
     }
 
     /**
@@ -69,7 +72,6 @@ class ProductController extends AdminBaseController
      */
     public function store(CreateProductRequest $request)
     {
-        // dd($request->all());
         $this->product->create($request->all());
 
         return redirect()->route('admin.product.product.index')
@@ -139,10 +141,10 @@ class ProductController extends AdminBaseController
         
         return DataTables::of($product)
             ->editColumn('category', function ($item){ 
-                return $item->category->name;
+                return $item->category->name??"";
             })
             ->editColumn('unit', function ($item){ 
-                return $item->unit->unit;
+                return $item->getUnit->unit;
             })
             ->addColumn('status', function ($item){ 
                 return ($item->status == Product::ACTIVE) ? '<span class="label label-success">'. trans('product::products.form.active') .'</span>' : '<span class="label label-default">'.trans('product::products.form.unactive').'</span>';

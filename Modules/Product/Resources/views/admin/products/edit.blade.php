@@ -10,7 +10,15 @@
         <li class="active">{{ trans('product::products.title.edit product') }}</li>
     </ol>
 @stop
-
+@section('styles')
+<link media="all" type="text/css" rel="stylesheet" href="/themes/adminlte/css/multi-upload-file.css">
+<link media="all" type="text/css" rel="stylesheet" href="/themes/adminlte/css/cropper.min.css">
+<link media="all" type="text/css" rel="stylesheet" href="/themes/adminlte/font/flaticon.css">
+@stop
+@section('scripts')
+<script src="/themes/adminlte/js/cropper.min.js" type="text/javascript"></script>
+<script src="/themes/adminlte/js/plugin-multi-upload-file.js" type="text/javascript"></script>
+@stop
 @section('content')
     {!! Form::open(['route' => ['admin.product.product.update', $product->unique_id], 'method' => 'put']) !!}
     <div class="row">
@@ -62,5 +70,13 @@
                 radioClass: 'iradio_flat-blue'
             });
         });
+        $(".multi-upload-file3").uploadMultiImage({
+            urlApi:'{{ route('api.uploadImage') }}',
+            resData: "data",
+            single: true,
+            sizeLimit: 2048000,
+            resizeMessage: 'Hình ảnh không vượt quá 2 MB'
+        });
+        
     </script>
 @endpush

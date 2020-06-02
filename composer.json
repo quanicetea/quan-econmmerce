@@ -31,7 +31,8 @@
         "idavoll/adminlte-theme": "~3.0",
         "binarycabin/laravel-uuid": "^1.0",
         "darkaonline/l5-swagger": "5.5.*",
-        "zircote/swagger-php": "2.*"
+        "zircote/swagger-php": "2.*",
+        "gloudemans/shoppingcart": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

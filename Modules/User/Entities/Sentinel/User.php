@@ -131,4 +131,9 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
 
         return $permissions->hasAccess($permission);
     }
+
+    //Một người có nhiều sản phẩm trong đó
+    public function products(){
+    	return $this->hasMany(Product::class, 'category_id');
+    }
 }

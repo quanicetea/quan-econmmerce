@@ -1,0 +1,75 @@
+body {
+    font-family: 'Quicksand',sans-serif;
+}
+
+.skin-blue .main-header .navbar {
+    background-color: #04ae34;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #229a27;
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    background-color: #229a27;
+}
+
+.skin-blue .main-header .logo:hover {
+    background-color: #229a27;
+}
+
+.btn-primary {
+    background-color: #04ae34;
+    border-color: #04ae34;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+    background-color: #229a27;
+    border-color: #009900;
+}
+
+
+.btn-primary:active:focus, .btn-primary:active:hover {
+	color: #fff;
+    background-color: #229a27;
+    border-color: #009900;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    color: #fff;
+    background-color: #229a27;
+    border-color: #009900;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    color: #fff;
+    cursor: default;
+    background-color: #229a27;
+    border-color: #009900;
+}
+
+.bg-light-blue, .label-primary, .modal-primary .modal-body {
+    background-color: #04ae34 !important;
+}
+
+.el-button--primary {
+    color: #fff;
+    background-color: #04ae34;
+    border-color: #009900;
+}
+
+.el-button--primary.is-active, .el-button--primary:active {
+    background: #229a27;
+    border-color: #009900;
+    color: #fff;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #229a27;
+    border-color: #009900;
+    color: #fff;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    color: #fff;
+    background: #229a27;
+    border-color: #009900;
+}

@@ -3,9 +3,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <title>WooW | HTML Commerce Template</title>
+        <title>Thái Bảo Quân</title>
         <base href="{{asset('')}}">
-		<link rel="shortcut icon" href="mystyle/images/favicon.ico">
+		<link rel="shortcut icon" href="mystyle/images/logo-q.png">
 
 		<link rel='stylesheet' href='mystyle/css/settings.css' type='text/css' media='all'/>
 		<link rel='stylesheet' href='mystyle/css/bootstrap.min.css' type='text/css' media='all'/>
@@ -20,15 +20,17 @@
 		<link rel='stylesheet' href='mystyle/css/commerce.css' type='text/css' media='all'/>
 		<link rel='stylesheet' href='mystyle/css/custom.css' type='text/css' media='all'/>
 		<link rel='stylesheet' href='mystyle/css/magnific-popup.css' type='text/css' media='all'/>
-
+		<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+		<![endif]-->
+		@yield('css')
 	</head>
 	<body>
+		@include('site::site.layout.menu_hide')
 	    <div id="wrapper" class="wide-wrap">
 			<div class="offcanvas-overlay"></div>
 			@include('site::site.layout.header')
@@ -1702,54 +1704,9 @@
 			@include('site::site.layout.footer')
 		</div>
 
-		
-		
-		<div class="modal fade user-lostpassword-modal" id="userlostpasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<form id="userlostpasswordModalForm">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-							</button>
-							<h4 class="modal-title">Forgot Password</h4>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label>Username or E-mail:</label>
-								<input type="text" name="user_login" required class="form-control" value="" placeholder="Username or E-mail">
-							</div>
-						</div>
-						<div class="modal-footer">
-							<span class="user-login-modal-link pull-left">
-								<a data-rel="loginModal" href="#loginModal">Already have an account?</a>
-							</span>
-							<button type="submit" class="btn btn-default btn-outline">Sign in</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="minicart-side">
-			<div class="minicart-side-title">
-				<h4>Shopping Cart</h4>
-			</div>
-			<div class="minicart-side-content">
-				<div class="minicart">
-					<div class="minicart-header no-items show">
-						Your shopping bag is empty.
-					</div>
-					<div class="minicart-footer">
-						<div class="minicart-actions clearfix">
-							<a class="button no-item-button" href="#">
-								<span class="text">Go to the shop</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		@include('site::site.layout.mini_cart')
 
+		@yield('script')
 		<script type='text/javascript' src='mystyle/js/jquery.js'></script>
 		<script type='text/javascript' src='mystyle/js/jquery-migrate.min.js'></script>
 		<script type='text/javascript' src='mystyle/js/jquery.themepunch.tools.min.js'></script>
@@ -1877,6 +1834,33 @@
 					});
 				}
 			});	/*ready*/
+			
+	$(document).ready(function() {
+        //show số lượng cart trên mini cart
+        $.ajax({
+            url: '{{route('site.showcart')}}',
+            type: 'GET',
+            dataType: 'json',
+        })
+        .done(function(data) {
+            displayMiniCart(data);
+        });
+    });
+
+    //show số lượng sp trên mini cart
+    function displayMiniCart(data)
+    {
+        let items = data.detail;
+        var x = ``;
+        for (item in items) {
+            ////duyệt để show sản phẩm ra cho đẹpaa
+            x+= `<p>Tên: ${items[item].name} Số lượng: ${items[item].qty}</p>
+                <p></p>
+            `;
+        }
+        $('.mini-cart').html(x);
+        $('.qty-product-mini-cart').html(data.count)
+    }
 		</script>
 	</body>
 </html>

@@ -43,6 +43,7 @@ class RegisterCategorySidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->route('admin.category.category.index');
                 $item->authorize(
                      /* append */
+                     $this->auth->hasAccess('category.categories.index')
                 );
                 // $item->item(trans('category::categories.title.categories'), function (Item $item) {
                 //     $item->icon('fa fa-copy');

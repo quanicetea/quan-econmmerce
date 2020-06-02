@@ -101,15 +101,28 @@ class ApiController extends AdminBaseController
     }
 
     public function uploadImage(Request $request){
-        // return 1;
         $file = $request->file('uploadfile');
-        $url = $this->uploadFile($file,'images');
-            // return \URL::to('/') .$url;
+        if(isset($file) && $file ){
+            $url = $this->uploadFile($file,'images');
+            // return $url;
+            return \URL::to('/') .$url;
+        }
+    }
+    protected function uploadFile($file,$folderName)
+    {
+        $s3 = \Storage::disk('local');
+        $time = time();
+        $fileName = preg_replace('/\s+/', '', $file->getClientOriginalName());
+        // $fileNameArr = explode('.', $fileName);
+        // $fileNameCustom = $fileNameArr[0] .'_'. $time .'.'. $fileNameArr[1];
+        $fileNameCustom = md5(rand()) .'_'. $time .'.jpg';
+        $filePath = 'public/assets/'.$folderName.'/' . $fileNameCustom;
+        $url = '/assets/'.$folderName.'/'. $fileNameCustom;
+        $result = $s3->put($filePath, file_get_contents($file),'public');
+        if($result)
+        {
             return $url;
-        // if(isset($file) && $file ){
-        //     $url = $this->uploadFile($file,'images');
-        //     // return \URL::to('/') .$url;
-        //     return $url;
-        // }
+        }
+        return null; 
     }
 }

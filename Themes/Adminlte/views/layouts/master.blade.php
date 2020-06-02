@@ -8,6 +8,7 @@
             @setting('core::site-name') | Admin
         @show
     </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/themes/adminlte/img/favicon.png" />
     <meta id="token" name="token" value="{{ csrf_token() }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user-api-token" content="{{ $currentUser->getFirstApiKey() }}">

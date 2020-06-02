@@ -281,7 +281,7 @@
                             <h5 class="modal-title">Preview image</h5>
                         </div>
                         <div class="modal-body">
-                            <img class='detail-image' src='/download.jpg' style='display:block;margin:auto;max-width:100%;'/>
+                            <img class='detail-image' src='/' style='display:block;margin:auto;max-width:100%;'/>
                         </div>
                     </div>
                     </div>
@@ -299,7 +299,7 @@
                             </div>
                             <div class="modal-body">
                                 <div>
-                                    <img class='crop-image' src='/download.jpg' style='display:block;width:100% !important;'/>
+                                    <img class='crop-image' src='/' style='display:block;width:100% !important;'/>
                                 </div>
                             </div>
                             <div class="modal-footer">

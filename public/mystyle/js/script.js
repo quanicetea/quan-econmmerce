@@ -173,7 +173,7 @@
 				self.navDropdown();
 			})
 			//Heading Parallax
-			this.headingInit();
+			// this.headingInit();
 			
 			//PopUp
 			this.magnificpopupInit();
@@ -592,29 +592,29 @@
 		},
 		commerceInit: function(){
 			var self = this;
-			if($('.minicart-side').length){
-				$('.minicart-link').on('click',function(e){
-					e.preventDefault();
-					e.stopPropagation();
+			// if($('.minicart-side').length){
+			// 	$('.minicart-link').on('click',function(e){
+			// 		e.preventDefault();
+			// 		e.stopPropagation();
 					
-					if($('.minicart-side').hasClass("open")){
-						$('.minicart-side').removeClass("open");
-					}else{
-						$('.minicart-side').addClass("open");
-					}
+			// 		if($('.minicart-side').hasClass("open")){
+			// 			$('.minicart-side').removeClass("open");
+			// 		}else{
+			// 			$('.minicart-side').addClass("open");
+			// 		}
 					
-				});
-				$('body').on('click', $.proxy( function(e){
-					var element = $(e.target);
-					if($('.minicart-side').length && $('.minicart-side').hasClass('open')){
-						if(!element.is('.minicart-side') && element.parents('.minicart-side').length === 0 )
-						{
-							$('.minicart-side').removeClass('open');
-						}
-					}
-				}, this) );
+			// 	});
+			// 	$('body').on('click', $.proxy( function(e){
+			// 		var element = $(e.target);
+			// 		if($('.minicart-side').length && $('.minicart-side').hasClass('open')){
+			// 			if(!element.is('.minicart-side') && element.parents('.minicart-side').length === 0 )
+			// 			{
+			// 				$('.minicart-side').removeClass('open');
+			// 			}
+			// 		}
+			// 	}, this) );
 				
-			}
+			// }
 			
 			//Shop mini cart
 			$(document).on("mouseenter", ".navbar-minicart-nav", function() {
@@ -759,13 +759,13 @@
 				}
 			});
 		},
-		headingInit: function(){
-			if(this.enableAnimation()){
-				if($('.heading-parallax').length){
-					$('.heading-parallax').parallax('50%', .5, true,'translate');
-				}
-			}
-		},
+		// headingInit: function(){
+		// 	if(this.enableAnimation()){
+		// 		if($('.heading-parallax').length){
+		// 			$('.heading-parallax').parallax('50%', .5, true,'translate');
+		// 		}
+		// 	}
+		// },
 		dhSliderInit: function(){
 			var self = this;
 			$('.dhslider').each(function(){

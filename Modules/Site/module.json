@@ -8,7 +8,8 @@
     "order": 1,
     "providers": [
         "Modules\\Site\\Providers\\SiteServiceProvider",
-        "Modules\\Site\\Providers\\RouteServiceProvider"
+        "Modules\\Site\\Providers\\RouteServiceProvider",
+        "Modules\\Site\\Providers\\SiteViewServiceProvider"
     ],
     "aliases": {},
     "files": [
