@@ -37,13 +37,13 @@ class RegisterUnitSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('unit::units.title.units'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(0);
-                $item->route('admin.unit.unit.index');
-                $item->authorize(
-                     /* append */
-                );
+            // $group->item(trans('unit::units.title.units'), function (Item $item) {
+            //     $item->icon('fa fa-copy');
+            //     $item->weight(0);
+            //     $item->route('admin.unit.unit.index');
+            //     $item->authorize(
+            //          /* append */
+            //     );
                 // $item->item(trans('unit::units.title.units'), function (Item $item) {
                 //     $item->icon('fa fa-copy');
                 //     $item->weight(0);
@@ -55,7 +55,7 @@ class RegisterUnitSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 // });
 // append
 
-            });
+            // });
         });
 
         return $menu;

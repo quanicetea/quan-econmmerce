@@ -17,23 +17,26 @@ use Modules\Site\Service\CreateOrderDetailService;
 use Modules\Customer\Entities\Customer;
 use Modules\Order\Entities\Order;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Mail;
+use Modules\Order\Repositories\OrderRepository;
+use Modules\Site\Emails\SendOrderMail;
 class SiteController extends Controller
 {
-
+    private $order;
     private $category;
     private $product;
     private $cartService;
     private $customerService;
     private $orderService;
     private $orderDetailService;
-    public function __construct(CategoryRepository $category,ProductRepository $product,CartService $cartService,CreateCustomerService $customerService,CreateOrderService $orderService,CreateOrderDetailService $orderDetailService){
+    public function __construct(OrderRepository $order,CategoryRepository $category,ProductRepository $product,CartService $cartService,CreateCustomerService $customerService,CreateOrderService $orderService,CreateOrderDetailService $orderDetailService){
         $this->category = $category;
         $this->product = $product;
         $this->cartService = $cartService;
         $this->customerService = $customerService;
         $this->orderService = $orderService;
         $this->orderDetailService = $orderDetailService;
+        $this->order = $order;
     }
     public function index()
     {   
@@ -145,6 +148,10 @@ class SiteController extends Controller
     public function success(Request $request){
         $order_code = $request->order_code;
         $order_email = $request->order_email;
+        $order = $this->order->findByAttributes(['order_code' => $order_code]);
+        // dd($order);
+        
+        Mail::to($order->email)->send(new SendOrderMail($order));
         Cart::destroy();
         return view('site::site.success',compact('order_code','order_email'));
     }

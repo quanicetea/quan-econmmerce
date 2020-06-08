@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Entities\Category;
 use Modules\Unit\Entities\Unit;
 use Modules\User\Entities\Sentinel\User;
+use Modules\Manufacturer\Entities\Manufacturer;
 
 class Product extends Model
 {
@@ -40,5 +41,9 @@ class Product extends Model
     
     public function getUnit(){
         return $this->belongsTo(Unit::class,'unit_id');
+    }
+
+    public function manufacturer(){
+    	return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
 }

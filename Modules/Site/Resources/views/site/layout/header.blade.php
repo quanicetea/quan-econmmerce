@@ -7,17 +7,11 @@
                         <div class="navbar-default-col">
                             <div class="navbar-wrap">
                                 <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar bar-top"></span>
-                                        <span class="icon-bar bar-middle"></span>
-                                        <span class="icon-bar bar-bottom"></span>
-                                    </button>
                                     <a class="navbar-search-button search-icon-mobile" href="#">
                                         <i class="fa fa-search"></i>
                                     </a>
-                                    <a class="cart-icon-mobile" href="#">
-                                        <i class="elegant_icon_bag"></i><span>0</span>
+                                    <a class="cart-icon-mobile" href="{{ route('site.cart')}}">
+                                        <i class="elegant_icon_bag"></i><span class="qty-product-mini-cart">0</span>
                                     </a>
                                     <a class="navbar-brand" href="./">
                                         <img class="logo" alt="WOOW" src="mystyle/images/logo.png">
@@ -72,7 +66,7 @@
                                     </div>
                                     <div class="navbar-minicart navbar-minicart-topbar">
                                         <div class="navbar-minicart">
-                                        <a class="minicart-link" href="{{ route('site.cart')}}">
+                                            <a class="minicart-link" href="{{ route('site.cart')}}">
                                                 <span class="minicart-icon">
                                                     <i class="fa fa-shopping-cart"></i>
                                                     <span class="qty-product-mini-cart">0</span>
