@@ -32,6 +32,7 @@
                                 <th>#</th>
                                 <th>{{ trans('product::products.table.name') }}</th>
                                 <th>{{ trans('product::products.table.category') }}</th>
+                                <th>{{ trans('product::products.table.manufacturer') }}</th>
                                 <th>{{ trans('product::products.table.unit') }}</th>
                                 <th>{{ trans('product::products.table.status') }}</th>
                                 <th>{{ trans('product::products.table.price') }}</th>
@@ -86,6 +87,7 @@
                     {data:'id',searchable:true},
                     {data:'name',searchable:true},
                     {data:'category', name: 'category.name', searchable:true},
+                    {data:'manufacturer', searchable:true},
                     {data:'unit',searchable:false},
                     {data:'status',searchable:false},
                     {data:'price',searchable:false},

@@ -33,7 +33,7 @@ class UserResetter
     public function startReset(array $credentials)
     {
         $user = $this->findUser($credentials);
-
+        
         $code = $this->auth->createReminderCode($user);
 
         event(new UserHasBegunResetProcess($user, $code));

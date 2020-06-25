@@ -7,5 +7,6 @@ use Illuminate\Http\Request;
 
 interface CustomerRepository extends BaseRepository
 {
-    public function createCustomer(Request $request);
+    public function createCustomer(array $request);
+    public function updateCustomer(array $request);
 }

@@ -44,6 +44,17 @@
                         {!! $errors->first('unit_id', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group{{ $errors->has('manufacturer_id') ? ' has-error' : '' }}">
+                        {!! Form::label('manufacturer_id', trans('product::products.form.manufacturer')) !!}<span class="required" style="color: red;" aria-required="true"> * </span>
+                        <select name="manufacturer_id" id="manufacturer" class="form-control">
+                            @foreach($manufacturers as $item)
+                                <option {{ old('unit_id') == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        {!! $errors->first('unit_id', '<span class="help-block">:message</span>') !!}
+                    </div>
+                </div>
             </div>
             <div class="row" style="padding-left: 15px; padding-right: 15px;">
                 @editor('description',trans('product::products.form.description'),old('description'))

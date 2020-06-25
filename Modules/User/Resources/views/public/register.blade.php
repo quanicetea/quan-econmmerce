@@ -12,6 +12,36 @@
         <p class="login-box-msg">{{ trans('user::auth.register') }}</p>
         @include('partials.notifications')
         {!! Form::open(['route' => 'register.post']) !!}
+            <div class="form-group has-feedback {{ $errors->has('first_name') ? ' has-error has-feedback' : '' }}">
+                <input type="text" name="first_name" class="form-control" autofocus
+                       placeholder="{{ trans('user::auth.first_name') }}" value="{{ old('first_name') }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
+            </div>
+            <div class="form-group has-feedback {{ $errors->has('last_name') ? ' has-error has-feedback' : '' }}">
+                <input type="text" name="last_name" class="form-control" autofocus
+                       placeholder="{{ trans('user::auth.last_name') }}" value="{{ old('last_name') }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
+            </div>
+            <div class="form-group has-feedback {{ $errors->has('phone') ? ' has-error has-feedback' : '' }}">
+                <input type="text" name="phone" class="form-control" autofocus
+                       placeholder="{{ trans('user::auth.phone') }}" value="{{ old('phone') }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {!! $errors->first('phone', '<span class="help-block">:message</span>') !!}
+            </div>
+            <div class="form-group has-feedback {{ $errors->has('citizen_identification') ? ' has-error has-feedback' : '' }}">
+                <input type="text" name="citizen_identification" class="form-control" autofocus
+                       placeholder="{{ trans('user::auth.ci') }}" value="{{ old('citizen_identification') }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {!! $errors->first('citizen_identification', '<span class="help-block">:message</span>') !!}
+            </div>
+            <div class="form-group has-feedback {{ $errors->has('address') ? ' has-error has-feedback' : '' }}">
+                <input type="text" name="address" class="form-control" autofocus
+                       placeholder="{{ trans('user::auth.address') }}" value="{{ old('address') }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
+            </div>
             <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
                 <input type="email" name="email" class="form-control" autofocus
                        placeholder="{{ trans('user::auth.email') }}" value="{{ old('email') }}">

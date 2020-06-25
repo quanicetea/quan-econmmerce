@@ -50,8 +50,8 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="wpcf7-form-control-wrap ">
-                                                    <p>Điện thoại: {{isset($customer->phone_number)?$customer->phone_number:''}}</p>
-                                                    <input type="hidden" value="{{$customer->phone_number}}" name="phone_number">
+                                                    <p>Điện thoại: {{isset($customer->phone)?$customer->phone:''}}</p>
+                                                    <input type="hidden" value="{{$customer->phone}}" name="phone">
                                                 </div>
                                             </div>
                                         </div>

@@ -126,7 +126,7 @@
                                         </figure>
                                     </div>
                                 </li>
-                                <li class="product product-no-border style-2">
+                                {{-- <li class="product product-no-border style-2">
                                     <div class="product-container">
                                         <figure>
                                             <div class="product-wrap">
@@ -211,7 +211,7 @@
                                             </figcaption>
                                         </figure>
                                     </div>
-                                </li>
+                                </li> --}}
                             @endforeach
                             {{-- End of Lấy 12 sản phẩm mới nhất trong DB show ra  --}}
                         </ul>

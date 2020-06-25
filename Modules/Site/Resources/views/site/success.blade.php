@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="content-container">
-    <div class="container" style="border: 1px solid;margin:10px">
+    <div class="container" style="border: 1px solid">
         <div class="row">
             <div class="col-md-12" style="padding: 20px;">
                 <div class="main-content " >

@@ -69,11 +69,6 @@ return [
             'driver' => 'eloquent',
             'model' => Modules\User\Entities\Sentinel\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

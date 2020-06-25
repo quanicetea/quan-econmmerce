@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Session\Store;
 use Modules\User\Contracts\Authentication;
+use Auth;
 
 class AdminMiddleware
 {
@@ -65,6 +66,9 @@ class AdminMiddleware
         // Check if the user has access to the dashboard page
         if (! $this->auth->hasAccess('dashboard.index')) {
             // Show the insufficient permissions page
+            if(Auth::check()){
+                Auth::logout();
+            }
             return $this->application->abort(Response::HTTP_FORBIDDEN);
         }
 

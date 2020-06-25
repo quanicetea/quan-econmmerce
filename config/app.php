@@ -189,7 +189,7 @@ return [
         Modules\Core\Providers\AsgardServiceProvider::class,
 
         App\Providers\RouteServiceProvider::class,
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
     ],
 
     /*

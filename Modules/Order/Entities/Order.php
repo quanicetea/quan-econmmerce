@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $table = 'order';
 
-    protected $fillable = ['customer_id','customer_phone','customer_firstname','customer_lastname','email','status','sub_total','vat','vat_percent','delivery_fee','total','address','order_code'];
+    protected $fillable = ['user_id','customer_phone','customer_firstname','customer_lastname','email','status','sub_total','vat','vat_percent','delivery_fee','total','address','order_code'];
 
     public function product()
     {
@@ -19,7 +19,7 @@ class Order extends Model
     }
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function orderDetail()
     {

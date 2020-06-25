@@ -19,7 +19,8 @@ return [
         'unit' => 'Unit',
         'status' => 'Status',
         'price' => 'Price',
-        'action' => 'Action'
+        'action' => 'Action',
+        'manufacturer' => 'Manufacturer'
     ],
     'form' => [
         'name' => 'Name',
@@ -30,7 +31,8 @@ return [
         'price' => 'Price',
         'unactive' => 'Unactive',
         'active' => 'Active',
-        'status' => 'Status'
+        'status' => 'Status',
+        'manufacturer' => 'Manufacturer'
     ],
     'messages' => [
         'name' => [

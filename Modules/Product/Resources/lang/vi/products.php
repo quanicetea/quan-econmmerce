@@ -19,7 +19,8 @@ return [
         'unit' => 'Đơn vị',
         'status' => 'Trạng thái',
         'price' => 'Giá',
-        'action' => 'Hành động'
+        'action' => 'Hành động',
+        'manufacturer' => 'Nhà sản xuất'
     ],
     'form' => [
         'name' => 'Tên',
@@ -30,7 +31,8 @@ return [
         'price' => 'Giá',
         'unactive' => 'Chưa kích hoạt',
         'active' => 'Kích hoạt',
-        'status' => 'Trạng thái'
+        'status' => 'Trạng thái',
+        'manufacturer' => 'Nhà sản xuất'
     ],
     'messages' => [
         'name' => [

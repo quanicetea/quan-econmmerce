@@ -16,6 +16,9 @@ class UpdateProfileRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'password' => 'confirmed',
+            'phone' => 'required',
+            'address' => 'required',
+            'citizen_identification' => 'required'
         ];
     }
 

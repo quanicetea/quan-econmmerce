@@ -9,7 +9,7 @@ use Modules\Product\Entities\Product;
 use Modules\Order\Entities\Order;
 class EloquentOrderDetailRepository extends EloquentBaseRepository implements OrderDetailRepository
 {
-    public function createOrderDetail(Order $order, $cartItems){
+    public function createOrderDetail( $order, $cartItems){
         $orderDetail = [];
         foreach ($cartItems as $item) {
             $options = $item->options;

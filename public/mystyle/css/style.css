@@ -2761,6 +2761,13 @@ input[type="button"].btn-block {
   box-shadow: 0 0.461538em 0.923077em rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
 }
+.dropdown-menu-profile{
+  min-width: 100px !important;
+}
+.mega-col-3-profile{
+  color:#000;
+  padding-left: 15px !important;
+}
 .dropdown-menu.pull-right {
   right: 0;
   left: auto;
@@ -4657,6 +4664,7 @@ button.close {
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
   outline: 0;
+  min-width: 500px;
 }
 .modal-backdrop {
   position: fixed;
@@ -4740,7 +4748,7 @@ button.close {
 .user-register-modal .form-control:focus,
 .user-lostpassword-modal .form-control:focus,
 .user-login-modal .form-control:focus {
-  border-color: #000000;
+  /* border-color: #000000; */
   outline: none;
   -webkit-box-shadow: inset 0 0 0 1px #000000;
   box-shadow: inset 0 0 0 1px #000000;
@@ -10087,4 +10095,28 @@ img.grayscale:hover {
 	color:#fff;
 	border-width:0;
 	padding:.75172413793103rem .96551724137931rem;
+}
+label.error{
+  color: red;
+  font-size: 1rem;
+  font-weight: unset;
+}
+.error, .error:focus{
+  border-color: red !important;
+  /* border: 2px; */
+}
+.alert-margin{
+  margin: 0 114px;
+}
+.help-block{
+  color: red !important;
+}
+.has-error .form-control{
+  border-color: red !important;
+}
+.error.form-control:focus{
+  border-color: red !important;
+}
+input.error:focus{
+  box-shadow: inset 0 0 0 1px red;
 }

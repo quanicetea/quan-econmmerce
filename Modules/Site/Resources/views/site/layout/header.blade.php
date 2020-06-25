@@ -35,14 +35,14 @@
                                                 @foreach($categories as $category)
                                                     <div class="col-sm-3">
                                                         <li class="mega-col-3">
-                                                            <h3 class="megamenu-title">{{$category->name}} <span class="caret"></span></h3>
+                                                        <a href="{{route('site.product.category',$category->slug)}}"><h3 class="megamenu-title">{{$category->name}} <span class="caret"></span></h3></a>
                                                         </li>
                                                     </div>
                                                 @endforeach
                                                 </div>
                                             </ul>
                                         </li>
-                                        <li><a href="collection.html"><span class="underline">Collections</span></a></li>
+                                        {{-- <li><a href="collection.html"><span class="underline">Collections</span></a></li>
 
                                         <li class="menu-item-has-children dropdown">
                                             <a href="#" class="dropdown-hover">
@@ -54,7 +54,7 @@
                                                 <li><a href="faq.html">FAQ</a></li>
                                                 <li><a href="404.html">404</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </nav>
                                 <div class="header-right">
@@ -83,8 +83,8 @@
             <div class="header-search-overlay hide">
                 <div class="container">
                     <div class="header-search-overlay-wrap">
-                        <form class="searchform">
-                            <input type="search" class="searchinput" name="s" autocomplete="off" value="" placeholder="Search..."/>
+                    <form class="searchform" action="{{route('site.search')}}">
+                            <input type="search" class="searchinput" name="search_key" autocomplete="off" value="" placeholder="Search..."/>
                         </form>
                         <button type="button" class="close">
                             <span aria-hidden="true" class="fa fa-times"></span>

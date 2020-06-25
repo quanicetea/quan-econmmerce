@@ -27,7 +27,7 @@ $router->post('/postcheckout', [
     'as' => 'site.postcheckout',
     'middleware' => config('asgard.page.config.middleware'),
 ]);
-$router->post('/confirm', [
+$router->get('/confirm', [
     'uses' => 'Site\SiteController@confirm',
     'as' => 'site.confirm',
     'middleware' => config('asgard.page.config.middleware'),
@@ -42,11 +42,11 @@ $router->get('/success', [
     'as' => 'site.success',
     'middleware' => config('asgard.page.config.middleware'),
 ]);
-$router->get('/product-by-category', [
-    'uses' => 'Site\SiteController@productByCateGory',
-    'as' => 'site.product-by-category',
-    'middleware' => config('asgard.page.config.middleware'),
-]);
+// $router->get('/product-by-category', [
+//     'uses' => 'Site\SiteController@productByCateGory',
+//     'as' => 'site.product-by-category',
+//     'middleware' => config('asgard.page.config.middleware'),
+// ]);
 
 //show sp ra mini cart
 $router->get('site/show', [
@@ -88,5 +88,57 @@ $router->get('site/update', [
 $router->get('site/remove', [
     'uses' => 'Site\SiteController@remove',
     'as' => 'site.removecart',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+
+$router->get('search', [
+    'uses' => 'Site\SiteController@search',
+    'as' => 'site.search',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+
+$router->get('category/{slug}', [
+    'uses' => 'Site\SiteController@productByCategory',
+    'as' => 'site.product.category',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->get('/register', [
+    'uses' => 'Site\SiteController@getRegister',
+    'as' => 'site..get.register',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->post('/register', [
+    'uses' => 'Site\SiteController@register',
+    'as' => 'site.register',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->get('/login', [
+    'uses' => 'Site\SiteController@getLogin',
+    'as' => 'site.get.login',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->post('/postLogin', [
+    'uses' => 'Site\SiteController@postLogin',
+    'as' => 'site.post.login',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->get('/getLogout', [
+    'uses' => 'Site\SiteController@getLogout',
+    'as' => 'site.get.logout',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->get('/profile/{id}', [
+    'uses' => 'Site\SiteController@getProfile',
+    'as' => 'site.get.profile',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->post('/profile/{id}', [
+    'uses' => 'Site\SiteController@updateProfile',
+    'as' => 'site.post.updateprofile',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->get('/forgotpassword', [
+    'uses' => 'Site\SiteController@getForgotpassword',
+    'as' => 'site.get.forgotpassword',
     'middleware' => config('asgard.page.config.middleware'),
 ]);

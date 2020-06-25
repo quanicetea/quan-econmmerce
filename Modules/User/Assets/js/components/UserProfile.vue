@@ -47,6 +47,24 @@
                                         <div class="el-form-item__error" v-if="form.errors.has('email')"
                                              v-text="form.errors.first('email')"></div>
                                     </el-form-item>
+                                    <el-form-item :label="trans('users.form.phone')"
+                                                  :class="{'el-form-item is-error': form.errors.has('phone') }">
+                                        <el-input v-model="user.phone"></el-input>
+                                        <div class="el-form-item__error" v-if="form.errors.has('phone')"
+                                             v-text="form.errors.first('phone')"></div>
+                                    </el-form-item>
+                                    <el-form-item :label="trans('users.form.address')"
+                                                  :class="{'el-form-item is-error': form.errors.has('address') }">
+                                        <el-input v-model="user.address"></el-input>
+                                        <div class="el-form-item__error" v-if="form.errors.has('address')"
+                                             v-text="form.errors.first('address')"></div>
+                                    </el-form-item>
+                                    <el-form-item :label="trans('users.form.ci')"
+                                                  :class="{'el-form-item is-error': form.errors.has('citizen_identification') }">
+                                        <el-input v-model="user.citizen_identification"></el-input>
+                                        <div class="el-form-item__error" v-if="form.errors.has('citizen_identification')"
+                                             v-text="form.errors.first('citizen_identification')"></div>
+                                    </el-form-item>
                                 </el-tab-pane>
                                 <el-tab-pane :label="trans('users.tabs.new password')" v-if="! user.is_new">
                                         <h4>{{ trans('users.new password setup') }}</h4>
@@ -94,6 +112,9 @@
                 user: {
                     first_name: '',
                     last_name: '',
+                    phone:'',
+                    address:'',
+                    citizen_identification:'',
                     permissions: {},
                     roles: {},
                     is_new: false,

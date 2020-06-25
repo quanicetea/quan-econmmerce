@@ -49,6 +49,7 @@ return [
     | Default: User
     */
     'default_role' => 'User',
+    'shop_role' => 'Shop',
     /*
     |--------------------------------------------------------------------------
     | Fillable user fields
@@ -61,6 +62,9 @@ return [
         'permissions',
         'first_name',
         'last_name',
+        'phone',
+        'address',
+        'citizen_identification'
     ],
     /*
     |--------------------------------------------------------------------------

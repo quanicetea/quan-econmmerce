@@ -9,10 +9,12 @@ use DB;
 use Modules\Customer\Entities\Customer;
 use Cart;
 use Carbon\Carbon;
+use Modules\User\Entities\Sentinel\User;
 
 class EloquentOrderRepository extends EloquentBaseRepository implements OrderRepository
 {
-    public function createOrder(Customer $customer,Request $request){
+    public function createOrder(User $customer,Request $request){
+        // dd($customer);
         $order = null;
         $subtotal = Cart::subtotal(0,'','');
         // dd(($subtotal));
@@ -30,8 +32,8 @@ class EloquentOrderRepository extends EloquentBaseRepository implements OrderRep
             $second = $now->second;
             $order_code = $year.$month.$day.$minute.$second;
             $order = $this->create([
-                'customer_id' => $customer->id,
-                'customer_phone' => $customer->phone_number,
+                'user_id' => $customer->id,
+                'customer_phone' => $customer->phone,
                 'customer_firstname' => $customer->first_name,
                 'customer_lastname' => $customer->last_name,
                 'email' => $customer->email,
@@ -53,17 +55,18 @@ class EloquentOrderRepository extends EloquentBaseRepository implements OrderRep
 
     public function listOrders($request){
 		$models = $this->model->select('order.*', 'order.created_at as order_date')->orderBy('id','DESC');
-		if($request->has('status')){
-			$models->where('status', $request->status);
-		}
-		if(!empty($request->start_date)){
-			$start_date= $request->start_date;
-			$models->where('order.created_at', '>=', $start_date);
-		}
-		if(!empty($request->end_date)){
-			$end_date = $request->end_date.' 23:59:59';
-			$models->where('order.created_at','<=', $end_date);
-		}
+		// if($request->has('status')){
+		// 	$models->where('status', $request->status);
+		// }
+		// if(!empty($request->start_date)){
+		// 	$start_date= $request->start_date;
+		// 	$models->where('order.created_at', '>=', $start_date);
+		// }
+		// if(!empty($request->end_date)){
+		// 	$end_date = $request->end_date.' 23:59:59';
+		// 	$models->where('order.created_at','<=', $end_date);
+        // }
+        
 		return $models;
 	}
-}
+}   

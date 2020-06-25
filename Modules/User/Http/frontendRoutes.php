@@ -13,7 +13,7 @@ $router->group(['prefix' => 'auth'], function (Router $router) {
         $router->post('register', ['as' => 'register.post', 'uses' => 'AuthController@postRegister']);
     }
     # Account Activation
-    $router->get('activate/{userId}/{activationCode}', 'AuthController@getActivate');
+    $router->get('activate/{userId}/{activationCode}', ['as'=>'activate.get','uses'=>'AuthController@getActivate']);
     # Reset password
     $router->get('reset', ['as' => 'reset', 'uses' => 'AuthController@getReset']);
     $router->post('reset', ['as' => 'reset.post', 'uses' => 'AuthController@postReset']);

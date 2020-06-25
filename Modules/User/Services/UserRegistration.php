@@ -36,15 +36,15 @@ class UserRegistration
         $this->input = $input;
 
         $user = $this->createUser();
-
+        app(\Modules\User\Repositories\UserTokenRepository::class)->generateFor($user->id);
         if ($this->hasProfileData()) {
             $this->createProfileForUser($user);
         }
 
-        $this->assignUserToUsersGroup($user);
+        // $this->assignUserToUsersGroup($user);    
+        $this->assignUserToShopsGroup($user);
 
         event(new UserHasRegistered($user));
-
         return $user;
     }
 
@@ -56,6 +56,13 @@ class UserRegistration
     private function assignUserToUsersGroup($user)
     {
         $role = $this->role->findByName(config('asgard.user.config.default_role', 'User'));
+
+        $this->auth->assignRole($user, $role);
+    }
+
+    private function assignUserToShopsGroup($user)
+    {
+        $role = $this->role->findByName(config('asgard.user.config.shop_role', 'Shop'));
 
         $this->auth->assignRole($user, $role);
     }

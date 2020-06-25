@@ -108,7 +108,7 @@
                                     </tr>
                                 </table>
                                 <div class="wc-proceed-to-checkout">
-                                <a href="{{ route('site.checkout')}}" class="checkout-button button alt wc-forward rounded">Proceed to Checkout</a>
+                                <a href="{{ route('site.confirm')}}" class="checkout-button button alt wc-forward rounded">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>

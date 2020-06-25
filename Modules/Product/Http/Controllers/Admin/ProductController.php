@@ -143,6 +143,9 @@ class ProductController extends AdminBaseController
             ->editColumn('category', function ($item){ 
                 return $item->category->name??"";
             })
+            ->editColumn('manufacturer', function ($item){ 
+                return $item->manufacturer->name??"";
+            })
             ->editColumn('unit', function ($item){ 
                 return $item->getUnit->unit;
             })

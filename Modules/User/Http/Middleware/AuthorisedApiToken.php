@@ -41,7 +41,7 @@ class AuthorisedApiToken extends ApiBaseController
     private function isValidToken($token)
     {
         $found = $this->userToken->findByAttributes(['access_token' => $this->parseToken($token)]);
-
+        
         $this->auth->logUserIn($found->user);
 
         if ($found === null) {

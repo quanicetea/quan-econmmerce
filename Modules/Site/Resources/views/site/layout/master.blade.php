@@ -21,6 +21,7 @@
 		<link rel='stylesheet' href='mystyle/css/custom.css' type='text/css' media='all'/>
 		<link rel='stylesheet' href='mystyle/css/magnific-popup.css' type='text/css' media='all'/>
 		<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -32,14 +33,59 @@
 	<body>
 		@include('site::site.layout.menu_hide')
 	    <div id="wrapper" class="wide-wrap">
+			<div class="topbar">
+				<div class="container topbar-wap">
+					<div class="row">
+						<div class="col-sm-6 col-left-topbar">
+							<div class="left-topbar">
+								Shop unique and handmade items directly 
+								<a href="#">About<i class="fa fa-long-arrow-right"></i></a>
+							</div>
+						</div>
+						<div class="col-sm-6 col-right-topbar">
+							<div class="right-topbar">
+								<div class="user-login">
+									<ul class="nav top-nav">
+										@if(isset($user))
+										<li>
+											<a href="{{route('site.get.profile',$user->id)}}"> 
+												<span>{{$user->first_name}} &nbsp;{{$user->last_name}}</span> 
+											</a>
+											<ul class="dropdown-menu dropdown-menu-profile">
+											<li class="mega-col-3 " ><a href="{{route('site.get.profile',$user->id)}}">Profile</a></li>
+											<li class="mega-col-3 " ><a href="{{route('site.get.logout')}}">Logout</a></li>
+                                                {{-- <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <li class="mega-col-3">
+
+                                                        <a href="{{route('site.product.category',$category->slug)}}"><h3 class="megamenu-title">{{$category->name}} <span class="caret"></span></h3></a>
+                                                        </li>
+													</div>
+													<div class="col-sm-3">
+                                                        <li class="mega-col-3">
+                                                        <a href="{{route('site.product.category',$category->slug)}}"><h3 class="megamenu-title">{{$category->name}} <span class="caret"></span></h3></a>
+                                                        </li>
+                                                    </div>
+                                                </div> --}}
+                                            </ul>
+										</li>
+										@else
+										<li><a data-rel="loginModal" href=""> Login </a></li>
+										@endif
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="offcanvas-overlay"></div>
 			@include('site::site.layout.header')
 			<div class="content-container no-padding">
 				<div class="container-full">
 					<div class="main-content">
 						@yield('content')
-						Em đang làm CMS nên chưa đẩy data ra Front nha thầy <br>
-						Thầy nhấp vào  <a href="https://quantb.name.vn/en/backend">link này</a> để vào CMS 
+						 
 					{{-- SLIDE  --}}
 						{{-- <div class="row row-fluid">
 							<div class="col-sm-12">
@@ -1705,7 +1751,9 @@
 		</div>
 
 		@include('site::site.layout.mini_cart')
-
+		@include('site::site.layout.modal_forgotpassword');
+		@include('site::site.layout.modal_login');
+		@include('site::site.layout.modal_register');
 		@yield('script')
 		<script type='text/javascript' src='mystyle/js/jquery.js'></script>
 		<script type='text/javascript' src='mystyle/js/jquery-migrate.min.js'></script>
@@ -1835,32 +1883,131 @@
 				}
 			});	/*ready*/
 			
-	$(document).ready(function() {
-        //show số lượng cart trên mini cart
-        $.ajax({
-            url: '{{route('site.showcart')}}',
-            type: 'GET',
-            dataType: 'json',
-        })
-        .done(function(data) {
-            displayMiniCart(data);
-        });
-    });
+			$(document).ready(function() {
+				//show số lượng cart trên mini cart
+				$.ajax({
+					url: '{{route('site.showcart')}}',
+					type: 'GET',
+					dataType: 'json',
+				})
+				.done(function(data) {
+					displayMiniCart(data);
+				});
+			});
 
-    //show số lượng sp trên mini cart
-    function displayMiniCart(data)
-    {
-        let items = data.detail;
-        var x = ``;
-        for (item in items) {
-            ////duyệt để show sản phẩm ra cho đẹpaa
-            x+= `<p>Tên: ${items[item].name} Số lượng: ${items[item].qty}</p>
-                <p></p>
-            `;
-        }
-        $('.mini-cart').html(x);
-        $('.qty-product-mini-cart').html(data.count)
-    }
+			// $('.user-login').click(function(e){
+			// 	$('#userloginModal').modal('show');
+			// })
+			//show số lượng sp trên mini cart
+			function displayMiniCart(data)
+			{
+				let items = data.detail;
+				var x = ``;
+				for (item in items) {
+					////duyệt để show sản phẩm ra cho đẹpaa
+					x+= `<p>Tên: ${items[item].name} Số lượng: ${items[item].qty}</p>
+						<p></p>
+					`;
+				}
+				$('.mini-cart').html(x);
+				$('.qty-product-mini-cart').html(data.count)
+			}
+			$("#userloginModalForm").validate({
+				onfocusout: false,
+				onkeyup: false,
+				onclick: false,
+				rules: {
+					"login_email": {
+						required: true,
+					},
+					"login_password": {
+						required: true,
+					},
+				},
+				messages:{
+                    "login_email":{
+                        required: "Chưa nhập Email",
+                        email: "Email không đúng định dạng"
+                    },
+                    "login_password":{
+                        required: "Chưa nhập password"
+                    }
+                }
+			});
+			$("#userlostpasswordModalForm").validate({
+				onfocusout: false,
+				onkeyup: false,
+				onclick: false,
+				rules: {
+					"email": {
+						required: true,
+						email: true,
+					},
+				},
+				messages:{
+                    "email":{
+                        required: "Chưa nhập Email",
+                        email: "Email không đúng định dạng"
+                    },
+                }
+			});
+			$("#userregisterModalForm").validate({
+				onfocusout: false,
+				onkeyup: false,
+				onclick: false,
+				rules: {
+					"first_name": {
+						required: true,
+					},
+					"last_name": {
+						required: true,
+					},
+					"email": {
+						required: true,
+						email: true,
+					},
+					"phone": {
+						required: true,
+						number: true,
+					},
+					"password":{
+						required: true,
+					},
+					"password_confirm":{
+						required: true,
+						equalTo: "#password"
+					},
+					"address":{
+						required: true,
+					}
+				},
+				messages:{
+                    "first_name":{
+                        required: "Chưa nhập Họ",
+                    },
+					"last_name":{
+						required: "Chưa nhập Tên",
+					},
+					"email":{
+                        required: "Chưa nhập Email",
+                        email: "Email không đúng định dạng"
+                    },
+					"phone": {
+						required: "Chưa nhập SĐT",
+						number: "SĐT phải là số",
+					},
+					"password":{
+						required: "Chưa nhập mật khẩu",
+					},
+					"password_confirm":{
+						required: "Chưa nhập lại mật khẩu",
+						equalTo: "Mật khẩu không trùng khớp"
+					},
+					"address":{
+						required: "Chưa nhập địa chỉ",
+					}
+                }
+			});
 		</script>
 	</body>
 </html>

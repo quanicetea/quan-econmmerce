@@ -20,4 +20,9 @@ return [
     'end greeting' => 'The team',
     'sign in welcome message' => 'Sign in to start your session',
     'reset password email was sent' => 'Reset password email was sent',
+    'phone' => 'Phone number',
+    'address' => 'Address',
+    'ci' => 'Citizen Identification',
+    'first_name' => 'First name',
+    'last_name' => 'Last name',
 ];

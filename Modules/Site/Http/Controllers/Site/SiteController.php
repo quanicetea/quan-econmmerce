@@ -20,7 +20,15 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Modules\Order\Repositories\OrderRepository;
 use Modules\Site\Emails\SendOrderMail;
-class SiteController extends Controller
+use Modules\Site\Service\SearchProductService;
+use Modules\Manufacturer\Repositories\ManufacturerRepository;
+use Modules\Customer\Repositories\CustomerRepository;
+use Auth;
+use Modules\Core\Http\Controllers\BasePublicController;
+use Modules\Site\Http\Requests\LoginRequest;
+// use Modules\Site\Http\Requests\RegisterRequest;
+use Modules\User\Http\Requests\RegisterRequest;
+class SiteController extends BasePublicController
 {
     private $order;
     private $category;
@@ -29,7 +37,11 @@ class SiteController extends Controller
     private $customerService;
     private $orderService;
     private $orderDetailService;
-    public function __construct(OrderRepository $order,CategoryRepository $category,ProductRepository $product,CartService $cartService,CreateCustomerService $customerService,CreateOrderService $orderService,CreateOrderDetailService $orderDetailService){
+    private $searchProductService;
+    private $manufacturer;
+    private $customer;
+    public function __construct(CustomerRepository $customer,ManufacturerRepository $manufacturer,SearchProductService $searchProductService,OrderRepository $order,CategoryRepository $category,ProductRepository $product,CartService $cartService,CreateCustomerService $customerService,CreateOrderService $orderService,CreateOrderDetailService $orderDetailService){
+        parent::__construct();
         $this->category = $category;
         $this->product = $product;
         $this->cartService = $cartService;
@@ -37,6 +49,9 @@ class SiteController extends Controller
         $this->orderService = $orderService;
         $this->orderDetailService = $orderDetailService;
         $this->order = $order;
+        $this->searchProductService = $searchProductService;
+        $this->manufacturer = $manufacturer;
+        $this->customer = $customer;
     }
     public function index()
     {   
@@ -51,9 +66,16 @@ class SiteController extends Controller
         // $category = Category::all();
         // dd($category);
         // $categories = $this->category->all();
+
         $products = $this->product->getNewProducts();
+        $user = Auth::user();
+        // dd($user);
+        if($user){
+            return view('site::site.index',compact('products','user'));
+        }else{
+            return view('site::site.index',compact('products'));
+        }
         
-        return view('site::site.index',compact('products'));
     }
 
     /**
@@ -122,12 +144,24 @@ class SiteController extends Controller
     //trang xác nhận trước khi tạo order
     public function confirm(Request $request){
         $cart = Cart::content();
+        // dd(count($cart));
+        if(count($cart)==0){
+            return redirect()->route('site.cart');
+        }
         $subtotal = Cart::subtotal(0,'.',',');
         $total = Cart::total(0,'.',',');
         $vat = Cart::tax(0,'.',',');
         $vat_percent = config('cart.tax');
-        $customer = $this->customerService->createCustomer($request);
-        return view('site::site.confirm',compact('customer','cart','subtotal','total','vat','vat_percent'));
+        if(Auth::check()){
+            $customer = Auth::user();
+            // dd($customer);
+            return view('site::site.confirm',compact('customer','cart','subtotal','total','vat','vat_percent'));
+        }else{
+            return redirect()->route('site.get.login');
+        }
+        // $customer = Auth::user();
+        // dd($customer);
+        // return view('site::site.confirm',compact('customer','cart','subtotal','total','vat','vat_percent'));
     }
 
     //tạo 1 order (bao gồm tạo customer và order_detail)
@@ -135,29 +169,31 @@ class SiteController extends Controller
 
         $cartItems = Cart::content();
 
-        $customer = Customer::where('phone_number',$request->phone_number)->first();
-
+        // $customer = Customer::where('phone_number',$request->phone_number)->first();
+        $customer = Auth::user();
         $order = $this->orderService->createOrder($customer,$request);
         // dd($order->id);
 
         $orderDetails = $this->orderDetailService->createOrderDetail($order,$cartItems);
         $order_code = $order->order_code;
         $order_email = $order->email;
+        Mail::to($order_email)->send(new SendOrderMail($order));
         return redirect()->route('site.success',compact('order_code','order_email'));
     }
     public function success(Request $request){
         $order_code = $request->order_code;
         $order_email = $request->order_email;
-        $order = $this->order->findByAttributes(['order_code' => $order_code]);
+        // $order = $this->order->findByAttributes(['order_code' => $order_code]);
         // dd($order);
         
-        Mail::to($order->email)->send(new SendOrderMail($order));
+        
         Cart::destroy();
         return view('site::site.success',compact('order_code','order_email'));
     }
 
-    public function productByCateGory(){
-        return view('site::site.product_by_category');
+    public function productByCateGory(Request $request){
+        $category = $this->category->findBySlug($request->slug);
+        return view('site::site.product_by_category',compact('category'));
     }
 
     public function show()
@@ -208,5 +244,67 @@ class SiteController extends Controller
 		$resp = curl_exec($curl);
         curl_close($curl);
         
+    }
+
+    public function search(Request $request){
+        $request_manufacturers = $request->manufacturer??null;
+        $search_key = $request->search_key??'';
+        $products = $this->searchProductService->searchProducts($request);
+        return view('site::site.search',compact('products','search_key','request_manufacturers'));
+    }
+
+    public function register(RegisterRequest $request){
+        // dd($request->all());
+        $this->customer->createCustomer($request->all());
+        return redirect()->route('site.homepage');
+    }
+    public function getLogin(){
+        if(Auth::check()){
+            return redirect()->route('site.homepage');
+        }
+        return view('site::site.login');
+    }
+    public function postLogin(LoginRequest $request){
+        $credentials = [
+            'email' => $request->login_email,
+            'password' => $request->login_password,
+        ];
+        $remember = (bool) $request->get('remember_me', false);
+
+        $error = $this->auth->login($credentials, $remember);
+        if ($error) {
+            return redirect()->back()->withInput()->withError($error);
+        }
+        return redirect()->back();
+    }
+    public function getLogout(){
+        Auth::logout();
+        return redirect()->back();
+    }
+
+    public function getProfile(Request $request){
+        //kiểm tra có đăng nhập
+        if(Auth::check()){
+            $customer_id = $request->id;
+            $customer = $this->customer->find($customer_id);
+            if(isset($customer)){
+                return view('site::site.profile',compact('customer'));
+            }
+        }else{
+            return redirect()->route('site.get.login');
+        }
+        
+    }
+    public function updateProfile(Request $request){
+        // dd($request->all());
+        $customer = $this->customer->updateCustomer($request->all());
+        // dd(redirect()->back());
+        return redirect()->back();
+    }
+    public function getForgotpassword(){
+        return view('site::site.forgotpassword');
+    }
+    public function getRegister(){
+        return view('site::site.register');
     }
 }

@@ -28,14 +28,17 @@ class SiteViewServiceProvider extends ServiceProvider
     {
     	view()->composer(
     		[
-    			'site::site.index',
-    			'site::site.cart_empty',
-    			'site::site.cart',
-                'site::site.checkout',
-                'site::site.category',
-                'site::site.product_by_category',
-                'site::site.success',
-                'site::site.confirm',
+    			// 'site::site.index',
+    			// 'site::site.cart_empty',
+    			// 'site::site.cart',
+                // 'site::site.checkout',
+                // 'site::site.category',
+                // 'site::site.product_by_category',
+                // 'site::site.success',
+                // 'site::site.confirm',
+                // 'site::site.search',
+                '*'
+
     		],
     		'Modules\Site\Http\ViewComposers\DefineComposer'
     	);

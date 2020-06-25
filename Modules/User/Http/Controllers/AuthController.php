@@ -55,7 +55,7 @@ class AuthController extends BasePublicController
     {
         app(UserRegistration::class)->register($request->all());
 
-        return redirect()->route('register')
+        return redirect()->route('login')
             ->withSuccess(trans('user::messages.account created check email for activation'));
     }
 
@@ -87,12 +87,12 @@ class AuthController extends BasePublicController
         try {
             app(UserResetter::class)->startReset($request->all());
         } catch (UserNotFoundException $e) {
-            return redirect()->back()->withInput()
-                ->withError(trans('user::messages.no user found'));
+            return redirect()->route('site.get.forgotpassword')->withInput()
+                ->withError("Không tồn tại email này trong hệ thống");
         }
 
-        return redirect()->route('reset')
-            ->withSuccess(trans('user::messages.check email to reset password'));
+        return redirect()->route('site.get.login')
+            ->withSuccess("Vui lòng kiểm tra Email để cập nhật mật khẩu");
     }
 
     public function getResetComplete()
@@ -114,7 +114,7 @@ class AuthController extends BasePublicController
                 ->withError(trans('user::messages.invalid reset code'));
         }
 
-        return redirect()->route('login')
+        return redirect()->route('site.get.login')
             ->withSuccess(trans('user::messages.password reset'));
     }
 }

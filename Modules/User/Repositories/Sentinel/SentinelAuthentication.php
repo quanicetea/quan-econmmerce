@@ -25,13 +25,15 @@ class SentinelAuthentication implements Authentication
             if (Sentinel::authenticate($credentials, $remember)) {
                 return false;
             }
-
+            return "Sai tài khoản hoặc mật khẩu";
             return trans('user::users.invalid login or password');
         } catch (NotActivatedException $e) {
+            return "Tài khoản chưa được kích hoạt";
             return trans('user::users.account not validated');
         } catch (ThrottlingException $e) {
             $delay = $e->getDelay();
-
+            // $delay = $e->getFree();
+            // $delay=0;
             return trans('user::users.account is blocked', ['delay' => $delay]);
         }
     }
