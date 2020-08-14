@@ -65,7 +65,7 @@
                                         </div>
 
                                         <div class="wpcf7-form-control-wrap">
-                                            <input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit rounded"/>
+                                            <input type="submit" value="Xác nhận" class="wpcf7-form-control wpcf7-submit rounded"/>
                                         </div>
                                     
                                 </div>
@@ -75,7 +75,7 @@
 
                         <div class="col-sm-8" style="border-left: 1px solid">
                             <h3 class="heading-left-custom">
-                                Cart Totals
+                                Giỏ hàng của bạn
                             </h3>
                             <div class="cart-collaterals">
                                 <div class="cart_totals">
@@ -95,12 +95,12 @@
                                             @foreach($cart as $item)
                                             <tr class="cart_item">
                                                 <td class="product-thumbnail hidden-xs">
-                                                    <a href="shop-detail-1.html">
+                                                <a href="{{route('site.detail',$item->id)}}">
                                                     <img width="100" height="150" src="{{$item->options->image}}" alt="ảnh"/>
                                                     </a>
                                                 </td>
                                                 <td class="product-name">
-                                                <a href="shop-detail-1.html">{{$item->name}}</a>
+                                                <a href="{{route('site.detail',$item->id)}}">{{$item->name}}</a>
                                                     {{-- mô tả sản phẩm  --}}
                                                     {{-- <dl class="variation">
                                                         <dt class="variation-Color">Color:</dt>
@@ -127,7 +127,7 @@
                                     </table>
 
                                     <table>
-                                        <tr class="cart-subtotal confirm-page">
+                                        {{-- <tr class="cart-subtotal confirm-page">
                                             <th>Tạm tính</th>
                                         <td><span class="amount">{{$subtotal}}</span></td>
                                         </tr>
@@ -138,7 +138,7 @@
                                         <tr class="shipping confirm-page">
                                             <th>Phí ship</th>
                                             <td><span class="amount">chưa apply</span></td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr class="order-total confirm-page">
                                             <th>Thành tiền</th>
                                             <td><strong><span class="amount">{{$total}}</span></strong></td>

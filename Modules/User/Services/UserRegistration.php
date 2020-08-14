@@ -48,6 +48,26 @@ class UserRegistration
         return $user;
     }
 
+    public function registerCustomer(array $input)
+    {
+        $this->input = $input;
+
+        $user = $this->createUser();
+        app(\Modules\User\Repositories\UserTokenRepository::class)->generateFor($user->id);
+        if ($this->hasProfileData()) {
+            $this->createProfileForUser($user);
+        }
+
+        // $this->assignUserToUsersGroup($user);    
+        // $this->assignUserToShopsGroup($user);
+
+        event(new UserHasRegistered($user));
+        dd($user);
+        $user->is_customer = 1;
+        $user->save();
+        return $user;
+    }
+
     private function createUser()
     {
         return $this->auth->register((array) $this->input);

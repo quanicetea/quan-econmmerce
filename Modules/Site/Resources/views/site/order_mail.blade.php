@@ -80,9 +80,9 @@ background-color: #f6f6f6;
                                         SĐT: {{$order->customer_phone}} <br>
                                         Địa chỉ: {{$order->address}} <br>
                                         Sản phẩm: <br> 
-                                        {{-- @foreach($order->orderDetail as $orderItem)
-                                        <span style="padding-left: 10px">- {{$orderItem->product->name}} (x {{$orderItem->quantity}})<br> </span>
-                                        @endforeach --}}
+                                        @foreach($order->orderDetail as $orderItem)
+                                        <span style="padding-left: 10px">- {{$orderItem->product->name}} ({{$orderItem->quantity}} x {{$orderItem->price}})<br> </span>
+                                        @endforeach
                                         Tổng tiền: {{$order->sub_total}}
                                     </td>
                                 </tr>

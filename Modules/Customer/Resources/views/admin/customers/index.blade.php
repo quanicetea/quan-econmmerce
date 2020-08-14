@@ -28,34 +28,19 @@
                     <div class="table-responsive">
                         <table class="data-table table table-bordered table-hover">
                             <thead>
-                            <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
-                            </tr>
+                                <th>#</th>
+                                <th>{{trans('customer::customers.table.name')}}</th>
+                                <th>{{trans('customer::customers.table.email')}}</th>
+                                <th>{{trans('customer::customers.table.phone')}}</th>
+                                <th>{{trans('customer::customers.table.address')}}</th>
+                                <th>{{trans('core::core.table.actions')}}</th>
                             </thead>
                             <tbody>
-                            <?php if (isset($customers)): ?>
-                            <?php foreach ($customers as $customer): ?>
-                            <tr>
-                                <td>
-                                    <a href="{{ route('admin.customer.customer.edit', [$customer->id]) }}">
-                                        {{ $customer->created_at }}
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.customer.customer.edit', [$customer->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.customer.customer.destroy', [$customer->id]) }}"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
+                            
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>{{ trans('core::core.table.created at') }}</th>
-                                <th>{{ trans('core::core.table.actions') }}</th>
+                                
                             </tr>
                             </tfoot>
                         </table>
@@ -92,18 +77,31 @@
     <?php $locale = locale(); ?>
     <script type="text/javascript">
         $(function () {
-            $('.data-table').dataTable({
-                "paginate": true,
-                "lengthChange": true,
-                "filter": true,
-                "sort": true,
-                "info": true,
-                "autoWidth": true,
-                "order": [[ 0, "desc" ]],
-                "language": {
-                    "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+            var oTable = $('.data-table').DataTable({
+            processing:true,
+            serverSide:true,
+            sort: false,
+            ajax: {
+                url: '{{ route('admin.customer.customer.datatable') }}',
+                data: function (d) {
+                    // d.status = $('#status').val();
+                    // d.start_date = $('#val-start-date').val();
+                    // d.end_date = $('#val-end-date').val();
                 }
-            });
+            },
+            columns: [
+                {data:'id',searchable:true},
+                {data:'name',searchable:false},
+                {data:'email',searchable:true},
+                {data:'phone',searchable:true},                    
+                {data:'address',searchable:true},
+                {data:'action',searchable:true},
+            ],
+            "order": [ 0, 'desc' ],
+            "language": {
+                "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+            }
+        });
         });
     </script>
 @endpush

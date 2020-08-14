@@ -1,7 +1,7 @@
 <div class="modal fade user-register-modal" id="userregisterModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form id="userregisterModalForm" method="POST" action="{{route('site.register')}}">
+        <form id="userregisterModalForm" method="POST" action="{{route('register.post')}}">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="password_confirm">Retype password</label>
-                                <input type="password" id="password_confirm" required value="" name="password_confirm" class="form-control" placeholder="Retype password">
+                                <input type="password" id="password_confirmation" required value="" name="password_confirmation" class="form-control" placeholder="Retype password">
                             </div>
                         </div>
                     </div>

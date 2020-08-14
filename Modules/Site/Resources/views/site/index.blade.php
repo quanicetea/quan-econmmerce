@@ -89,10 +89,10 @@
                                             <div class="product-wrap">
                                                 <div class="product-images">
                                                     <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
-                                                        <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                        <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
                                                     </div>
                                                     <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
-                                                        <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                        <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,7 +105,7 @@
                                                 <div class="shop-loop-product-info">
                                                     <div class="info-content-wrap">
                                                         <h3 class="product_title">
-                                                            <a href="shop-detail-1.html">{{$product->name}}</a>
+                                                            <a href="{{route('site.detail',$product->unique_id)}}">{{$product->name}}</a>
                                                         </h3>
                                                         <div class="info-price">
                                                             <span class="price">

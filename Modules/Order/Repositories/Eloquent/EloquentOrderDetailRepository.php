@@ -9,19 +9,19 @@ use Modules\Product\Entities\Product;
 use Modules\Order\Entities\Order;
 class EloquentOrderDetailRepository extends EloquentBaseRepository implements OrderDetailRepository
 {
-    public function createOrderDetail( $order, $cartItems){
+    public function createOrderDetail(Order $order, $cartItems){
         $orderDetail = [];
         foreach ($cartItems as $item) {
-            $options = $item->options;
-            Cart::update($item->rowId, compact('options'));
-            $product = Product::where('unique_id',$item->id)->first();
-            $this->create([
-                'order_id' => $order->id,
-                'product_id' => $product->id,
-                'quantity' => $item->qty,
-                'price' => $item->price,
-                'user_id' => $item->options->user->id,
-            ]);
+                $options = $item->options;
+                Cart::update($item->rowId, compact('options'));
+                $product = Product::where('unique_id',$item->id)->first();
+                $this->create([
+                    'order_id' => $order->id,
+                    'product_id' => $product->id,
+                    'quantity' => $item->qty,
+                    'price' => $item->price,
+                    'user_id' => $item->options->user->id,
+                ]);
         }
     }
 }

@@ -14,9 +14,9 @@
                                         <i class="elegant_icon_bag"></i><span class="qty-product-mini-cart">0</span>
                                     </a>
                                     <a class="navbar-brand" href="./">
-                                        <img class="logo" alt="WOOW" src="mystyle/images/logo.png">
-                                        <img class="logo-fixed" alt="WOOW" src="mystyle/images/logo-fixed.png">
-                                        <img class="logo-mobile" alt="WOOW" src="mystyle/images/logo-mobile.png">
+                                        <img class="logo" alt="WOOW" src="mystyle/images/logo-q.png">
+                                        <img class="logo-fixed" alt="WOOW" src="mystyle/images/logo-q.png">
+                                        <img class="logo-mobile" alt="WOOW" src="mystyle/images/logo-q.png">
                                     </a>
                                 </div>
                                 <nav class="collapse navbar-collapse primary-navbar-collapse">

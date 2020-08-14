@@ -45,12 +45,12 @@
                                             <a href="javascript:void(0)" onclick="deleteCart('{{$product->id}}')" class="remove" title="Remove this item">&times;</a>
                                         </td>
                                         <td class="product-thumbnail hidden-xs">
-                                            <a href="shop-detail-1.html">
+                                            <a href="{{route('site.detail',$product->id)}}">
                                                 <img width="100" height="150" src="{{$product->options->image}}" alt=""/>
                                             </a>
                                         </td>
                                         <td class="product-name">
-                                            <a href="shop-detail-1.html">{{$product->name}}</a>
+                                            <a href="{{route('site.detail',$product->id)}}">{{$product->name}}</a>
                                             {{-- mô tả sản phẩm  --}}
                                             {{-- <dl class="variation">
                                                 <dt class="variation-Color">Color:</dt>
@@ -108,7 +108,7 @@
                                     </tr>
                                 </table>
                                 <div class="wc-proceed-to-checkout">
-                                <a href="{{ route('site.confirm')}}" class="checkout-button button alt wc-forward rounded">Proceed to Checkout</a>
+                                <a href="{{ route('site.confirm')}}" class="checkout-button button alt wc-forward rounded">Tiến hành đặt hàng</a>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@
 			url: '{{route('site.removecart')}}',
 			type: 'GET',
 			dataType: 'json',
-			data: {product_id: product_id, qty: +1},
+			data: {product_id: product_id},
 		})
 		.done(function(data) {
             console.log("đã xoá ")
@@ -204,12 +204,12 @@
                     <a href="javascript:void(0)" onclick="deleteCart('${items[item].id}')" class="remove" title="Remove this item">&times;</a>
                 </td>
                 <td class="product-thumbnail hidden-xs">
-                    <a href="shop-detail-1.html">
+                    <a href="/detail/${items[item].id}">
                         <img width="100" height="150" src="${items[item].options.image}" alt="${items[item].name}"/>
                     </a>
                 </td>
                 <td class="product-name">
-                    <a href="shop-detail-1.html">${items[item].name}</a>
+                    <a href="/detail/${items[item].id}">${items[item].name}</a>
                 </td>
                 <td class="product-price text-center">
                 <span class="amount">${items[item].price}</span>

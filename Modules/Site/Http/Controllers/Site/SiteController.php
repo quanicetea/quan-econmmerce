@@ -26,6 +26,7 @@ use Modules\Customer\Repositories\CustomerRepository;
 use Auth;
 use Modules\Core\Http\Controllers\BasePublicController;
 use Modules\Site\Http\Requests\LoginRequest;
+use Modules\Site\Service\CreateOrderAdminService;
 // use Modules\Site\Http\Requests\RegisterRequest;
 use Modules\User\Http\Requests\RegisterRequest;
 class SiteController extends BasePublicController
@@ -40,7 +41,8 @@ class SiteController extends BasePublicController
     private $searchProductService;
     private $manufacturer;
     private $customer;
-    public function __construct(CustomerRepository $customer,ManufacturerRepository $manufacturer,SearchProductService $searchProductService,OrderRepository $order,CategoryRepository $category,ProductRepository $product,CartService $cartService,CreateCustomerService $customerService,CreateOrderService $orderService,CreateOrderDetailService $orderDetailService){
+    private $orderAdminService;
+    public function __construct(CreateOrderAdminService $orderAdminService,CustomerRepository $customer,ManufacturerRepository $manufacturer,SearchProductService $searchProductService,OrderRepository $order,CategoryRepository $category,ProductRepository $product,CartService $cartService,CreateCustomerService $customerService,CreateOrderService $orderService,CreateOrderDetailService $orderDetailService){
         parent::__construct();
         $this->category = $category;
         $this->product = $product;
@@ -52,6 +54,7 @@ class SiteController extends BasePublicController
         $this->searchProductService = $searchProductService;
         $this->manufacturer = $manufacturer;
         $this->customer = $customer;
+        $this->orderAdminService = $orderAdminService;
     }
     public function index()
     {   
@@ -66,6 +69,16 @@ class SiteController extends BasePublicController
         // $category = Category::all();
         // dd($category);
         // $categories = $this->category->all();
+
+        //tách bill
+        // $cart = Cart::content();
+        // $list_shop = array();
+        // foreach($cart as $item){
+        //     if (!in_array($item->options->user, $list_shop)){
+        //         $list_shop[] = $item->options->user;
+        //     }
+        // }
+        // dd($list_shop);
 
         $products = $this->product->getNewProducts();
         $user = Auth::user();
@@ -168,15 +181,38 @@ class SiteController extends BasePublicController
     public function order(Request $request){
 
         $cartItems = Cart::content();
-
-        // $customer = Customer::where('phone_number',$request->phone_number)->first();
         $customer = Auth::user();
+        // $orderAdmin = $this->orderAdminService->createOrderAdmin($customer,$request);
+        // dd($orderAdmin);
+        // $customer = Customer::where('phone_number',$request->phone_number)->first();
+    
+        // $cart = Cart::content();
+        // $list_shops = array();
+        // foreach($cartItems as $item){
+        //     if (!in_array($item->options->user, $list_shops)){
+        //         $list_shops[] = $item->options->user;
+        //     }
+        // }
+        
         $order = $this->orderService->createOrder($customer,$request);
-        // dd($order->id);
 
+        // foreach($list_shops as $shop){
+        //     $subtotal=0;
+        //     $order = $this->orderService->createOrder($customer,$request,$orderAdmin->id);
+        //     $orderDetails = $this->orderDetailService->createOrderDetail($order,$cartItems,$shop->id);
+        //     dd($orderDetails);
+        //     foreach($orderDetails->product as $item){
+        //         $subtotal += $item->quantity*$item->price;
+        //     }
+        //     $order->subtotal = $subtotal;
+        //     $order->total = $subtotal;
+        //     $order->save();
+        // }
+        
         $orderDetails = $this->orderDetailService->createOrderDetail($order,$cartItems);
         $order_code = $order->order_code;
         $order_email = $order->email;
+        // dd($order->orderDetail);
         Mail::to($order_email)->send(new SendOrderMail($order));
         return redirect()->route('site.success',compact('order_code','order_email'));
     }
@@ -306,5 +342,10 @@ class SiteController extends BasePublicController
     }
     public function getRegister(){
         return view('site::site.register');
+    }
+
+    public function detail(Request $request){
+        $product = $this->product->findByAttributes(['unique_id' => $request->unique_id]);
+        return view('site::site.detail',compact('product'));
     }
 }

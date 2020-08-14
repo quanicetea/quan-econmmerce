@@ -37,42 +37,43 @@ class RegisterManufacturerSidebar implements \Maatwebsite\Sidebar\SidebarExtende
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('manufacturer::manufacturers.title.category'), function (Item $item) {
+            $group->item(trans('manufacturer::manufacturers.title.manufacturers'), function (Item $item) {
                 $item->icon('fa fa-copy');
                 $item->weight(0);
+                $item->route('admin.manufacturer.manufacturer.index');
                 $item->authorize(
                      /* append */
                      $this->auth->hasAccess('manufacturer.manufacturers.index') or $this->auth->hasAccess('unit.units.index') or $this->auth->hasAccess('category.categories.index')
                 );
-                $item->item(trans('manufacturer::manufacturers.title.manufacturers'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    // $item->append('admin.manufacturer.manufacturer.create');
-                    $item->route('admin.manufacturer.manufacturer.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('manufacturer.manufacturers.index')
-                    );
-                });
+                // $item->item(trans('manufacturer::manufacturers.title.manufacturers'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     // $item->append('admin.manufacturer.manufacturer.create');
+                //     $item->route('admin.manufacturer.manufacturer.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('manufacturer.manufacturers.index')
+                //     );
+                // });
 // append
-                $item->item(trans('unit::units.title.units'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    // $item->append('admin.unit.unit.create');
-                    $item->route('admin.unit.unit.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('unit.units.index')
-                    );
-                });
+                // $item->item(trans('unit::units.title.units'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     // $item->append('admin.unit.unit.create');
+                //     $item->route('admin.unit.unit.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('unit.units.index')
+                //     );
+                // });
 
-                $item->item(trans('category::categories.title.categories'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    // $item->append('admin.category.category.create');
-                    $item->route('admin.category.category.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('category.categories.index')
-                    );
-                });
+                // $item->item(trans('category::categories.title.categories'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     // $item->append('admin.category.category.create');
+                //     $item->route('admin.category.category.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('category.categories.index')
+                //     );
+                // });
             });
         });
 

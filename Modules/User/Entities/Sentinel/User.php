@@ -10,7 +10,7 @@ use Laracasts\Presenter\PresentableTrait;
 use Modules\User\Entities\UserInterface;
 use Modules\User\Entities\UserToken;
 use Modules\User\Presenters\UserPresenter;
-
+use Modules\Order\Entities\Order;
 class User extends EloquentUser implements UserInterface, AuthenticatableContract
 {
     use PresentableTrait, Authenticatable;
@@ -138,5 +138,10 @@ class User extends EloquentUser implements UserInterface, AuthenticatableContrac
     //Một người có nhiều sản phẩm trong đó
     public function products(){
     	return $this->hasMany(Product::class, 'category_id');
+    }
+
+    //1 khách hàng mua nhiều đơn hàng
+    public function orders(){
+        return $this->hasMany(Order::class, 'user_id');
     }
 }

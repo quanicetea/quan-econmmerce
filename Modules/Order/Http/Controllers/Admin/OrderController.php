@@ -11,6 +11,7 @@ use Modules\Order\Http\Requests\UpdateOrderRequest;
 use Modules\Order\Repositories\OrderRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Yajra\Datatables\Datatables;
+use Auth;
 
 class OrderController extends AdminBaseController
 {
@@ -38,6 +39,9 @@ class OrderController extends AdminBaseController
      */
     public function index()
     {
+        
+        // $order  = $this->order->findByAttributes(['order_code'=>20206304011]);
+        // dd(json_decode($order->shop_id)[0]);
         //$orders = $this->order->all();
 
         return view('order::admin.orders.index', compact(''));
@@ -45,18 +49,17 @@ class OrderController extends AdminBaseController
 
     public function dataTable(Request $request){
         $orders = $this->order->listOrders($request);
+        // dd($orders);
         return $this->dataTables->eloquent($orders)
         ->addColumn('customer_name', function($order){
             return $order->customer_firstname.' '.$order->customer_lastname;
         })
         ->addColumn('total', function($order){
             return number_format($order->total);
-        })
-        ->addColumn('status', function($order){
-            return view('order::admin.orders.partials.option-status', compact('order'))->render();
+            
         })
         ->editColumn('order_date', function($order){
-            return date('Y-m-d', strtotime($order->date_order));
+            return date('Y-m-d H:i', strtotime($order->created_at));
         })
         ->addColumn('action', function($order){
             return '<div class="btn-group">
@@ -135,5 +138,14 @@ class OrderController extends AdminBaseController
         //     dd($item->product->name);
         // }
         return view('order::admin.orders.order-detail', compact('order', 'orderItems'));
+        // $user = Auth::user();
+        // if($user->id ==1){
+        //     return view('order::admin.orders.order-detail', compact('order', 'orderItems'));
+        // }
+        // return view('order::admin.orders.order-detail-shop', compact('order', 'orderItems','user'));
+    }
+    public function viewDetailShop(Order $order){
+        $orderItems = OrderDetail::where('order_id', $order->id)->get();
+        return view('order::admin.orders.order-detail-shop', compact('order', 'orderItems'));
     }
 }

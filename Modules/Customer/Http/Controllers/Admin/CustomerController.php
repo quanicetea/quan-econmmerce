@@ -9,6 +9,8 @@ use Modules\Customer\Http\Requests\CreateCustomerRequest;
 use Modules\Customer\Http\Requests\UpdateCustomerRequest;
 use Modules\Customer\Repositories\CustomerRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\User\Entities\Sentinel\User;
+use Yajra\DataTables\DataTables;
 
 class CustomerController extends AdminBaseController
 {
@@ -31,7 +33,11 @@ class CustomerController extends AdminBaseController
      */
     public function index()
     {
-        //$customers = $this->customer->all();
+        // $user = User::find(37);
+        // $customer = $this->customer->find(37);
+        // dd($customer);
+        $customers = $this->customer->all();
+        // dd($customers);
 
         return view('customer::admin.customers.index', compact(''));
     }
@@ -98,5 +104,27 @@ class CustomerController extends AdminBaseController
 
         return redirect()->route('admin.customer.customer.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('customer::customers.title.customers')]));
+    }
+
+    public function datatable(Request $request){
+        $customers = $this->customer->getData();
+        return DataTables::of($customers)
+        
+        ->editColumn('name',function($customer){
+            return $customer->first_name.' '.$customer->last_name;
+        })
+        
+        ->addColumn('action', function ($customer) {
+            return '<div class="btn-group">
+                        <a href="'. route('admin.customer.customer.edit', [$customer->id]) .'" class="btn btn-default btn-flat">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </div>';
+        })
+        // <button class="btn btn-danger btn-flat" data-toggle="modal"
+        //                     data-target="#modal-delete-confirmation"
+        //                     data-action-target="' . route('admin.customer.customer.destroy', [$customer->id]) . '" title="'.trans('customer::customers.button.delete').'">
+        //                 <i class="fa fa-trash"></i></button>
+        ->rawColumns(['action'])->make(true);
     }
 }

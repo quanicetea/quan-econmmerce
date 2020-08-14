@@ -106,8 +106,9 @@ class UnitController extends AdminBaseController
         return DataTables::of($unit)
             ->addColumn('action', function ($unit) {
                 return '<div class="btn-group">
-                                        <a href="'. route('admin.unit.unit.edit', [$unit->id]) .'" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                    </div>';
+                            <a href="'. route('admin.unit.unit.edit', [$unit->id]) .'" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                            <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="'. route('admin.unit.unit.destroy', [$unit->id]) .'"><i class="fa fa-trash"></i></button>
+                        </div>';
             })
             ->rawColumns(['action'])->make(true);
     }

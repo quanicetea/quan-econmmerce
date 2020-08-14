@@ -10,12 +10,20 @@ use Modules\Customer\Entities\Customer;
 use Cart;
 use Carbon\Carbon;
 use Modules\User\Entities\Sentinel\User;
+use Auth;
 
 class EloquentOrderRepository extends EloquentBaseRepository implements OrderRepository
 {
     public function createOrder(User $customer,Request $request){
         // dd($customer);
         $order = null;
+        $cart = Cart::content();
+        $list_shop = array();
+        foreach($cart as $item){
+            if (!in_array($item->options->user->id, $list_shop)){
+                $list_shop[] = $item->options->user->id;
+            }
+        }
         $subtotal = Cart::subtotal(0,'','');
         // dd(($subtotal));
         $total = Cart::total(0,'','');
@@ -44,7 +52,8 @@ class EloquentOrderRepository extends EloquentBaseRepository implements OrderRep
                 'delivery_fee' =>0,
                 'total' => $total,
                 'address' => $customer->address,
-                'order_code' => $order_code
+                'order_code' => $order_code,
+                'shop_id' => json_encode($list_shop)
             ]);
             DB::commit();
         }catch(\Exception $exception){
@@ -54,7 +63,14 @@ class EloquentOrderRepository extends EloquentBaseRepository implements OrderRep
     }
 
     public function listOrders($request){
-		$models = $this->model->select('order.*', 'order.created_at as order_date')->orderBy('id','DESC');
+        $models = $this->model->select('order.*', 'order.created_at as order_date')->orderBy('id','DESC');
+        // $user = Auth::user();
+        // if($user->id ==1){
+        //     $models = $this->model->select('order.*', 'order.created_at as order_date')->orderBy('id','DESC');
+        // } else {
+        //     $models = $this->model->select('order.*', 'order.created_at as order_date')->orderBy('id','DESC')->where('shop_id','like','%'.$user->id.'%');
+        // }
+		
 		// if($request->has('status')){
 		// 	$models->where('status', $request->status);
 		// }

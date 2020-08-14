@@ -55,6 +55,7 @@ return [
         'vat' => 'Vat',
         'fee-shipping' => 'Shipping',
         'total' => 'TOTAL',
-        'notes-content' => 'Free shipping for orders over VND 500,000.'
+        'notes-content' => 'Free shipping for orders over VND 500,000.',
+        'shop' => 'Shop'
     ],
 ];

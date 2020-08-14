@@ -80,17 +80,17 @@
                 ajax: {
                     url: '{{ route('admin.product.product.datatable') }}',
                     data: function (d) {
-                        d.category = $('#category').val();
+                        // d.category = $('#category').val();
                     }
                 },
                 columns: [
                     {data:'id',searchable:true},
                     {data:'name',searchable:true},
                     {data:'category', name: 'category.name', searchable:true},
-                    {data:'manufacturer', searchable:true},
-                    {data:'unit',searchable:false},
+                    {data:'manufacturer', name: 'manufacturer.name' , searchable:true},
+                    {data:'unit',name: 'getUnit.unit',searchable:true},
                     {data:'status',searchable:false},
-                    {data:'price',searchable:false},
+                    {data:'price',searchable:true},
                     {data:'action',searchable:false},
                 ],
                 "language": {

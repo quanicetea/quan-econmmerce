@@ -61,7 +61,17 @@ class RegisterOrderSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 //         $this->auth->hasAccess('order.orderdetails.index')
                 //     );
                 // });
+                // $item->item(trans('order::orderadmins.title.orderadmins'), function (Item $item) {
+                //     $item->icon('fa fa-copy');
+                //     $item->weight(0);
+                //     $item->append('admin.order.orderadmin.create');
+                //     $item->route('admin.order.orderadmin.index');
+                //     $item->authorize(
+                //         $this->auth->hasAccess('order.orderadmins.index')
+                //     );
+                // });
 // append
+
 
 
             });

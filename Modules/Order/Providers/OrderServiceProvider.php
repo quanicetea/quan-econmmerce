@@ -31,7 +31,9 @@ class OrderServiceProvider extends ServiceProvider
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
             $event->load('orders', array_dot(trans('order::orders')));
             $event->load('orderdetails', array_dot(trans('order::orderdetails')));
+            $event->load('orderadmins', array_dot(trans('order::orderadmins')));
             // append translations
+
 
 
         });
@@ -81,7 +83,20 @@ class OrderServiceProvider extends ServiceProvider
                 return new \Modules\Order\Repositories\Cache\CacheOrderDetailDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Order\Repositories\OrderAdminRepository',
+            function () {
+                $repository = new \Modules\Order\Repositories\Eloquent\EloquentOrderAdminRepository(new \Modules\Order\Entities\OrderAdmin());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Order\Repositories\Cache\CacheOrderAdminDecorator($repository);
+            }
+        );
 // add bindings
+
 
 
     }

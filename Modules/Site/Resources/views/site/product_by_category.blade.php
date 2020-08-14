@@ -71,10 +71,10 @@
                                         <div class="product-wrap">
                                             <div class="product-images">
                                                 <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
-                                                    <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                    <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
                                                 </div>
                                                 <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
-                                                    <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                    <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
                                                 </div>
                                             </div>
                                         </div>

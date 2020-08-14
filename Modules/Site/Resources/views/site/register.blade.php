@@ -27,7 +27,7 @@
                                 <div class="commerce commerce-account">
                                     <h2 class="commerce-account-heading">Register</h2>
                                     @include('site::site.layout.notifications')
-                                <form id="login-form" class="login" method="POST" action="{{route('site.register')}}">
+                                <form id="login-form" class="login" method="POST" action="{{route('register.post')}}">
                                     {{csrf_field()}}
                                     <div class="form-group">
                                         <div class="row">
@@ -78,10 +78,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('password_confirm') ? ' has-error has-feedback' : '' }}">
+                                                <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? ' has-error has-feedback' : '' }}">
                                                     <label for="password_confirm">{{ trans('user::auth.password confirmation') }}</label>
-                                                    <input type="password" name="password_confirm" class="form-control" placeholder="{{ trans('user::auth.password confirmation') }}">
-                                                    {!! $errors->first('password_confirm', '<span class="help-block">:message</span>') !!}
+                                                    <input type="password" name="password_confirmation" class="form-control" placeholder="{{ trans('user::auth.password confirmation') }}">
+                                                    {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -137,7 +137,7 @@
 					"password":{
 						required: true,
 					},
-					"password_confirm":{
+					"password_confirmation":{
 						required: true,
 						equalTo: "#pw"
 					},

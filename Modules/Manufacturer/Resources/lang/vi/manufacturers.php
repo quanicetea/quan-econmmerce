@@ -6,13 +6,13 @@ return [
     'edit resource' => 'Edit manufacturers',
     'destroy resource' => 'Destroy manufacturers',
     'title' => [
-        'manufacturers' => 'Manufacturer',
-        'create manufacturer' => 'Create a manufacturer',
-        'edit manufacturer' => 'Edit a manufacturer',
+        'manufacturers' => 'Nhà sản xuất',
+        'create manufacturer' => 'Tạo mới nhà sản xuất',
+        'edit manufacturer' => 'Sửa nhà sản xuất',
         'category' => 'Category'
     ],
     'button' => [
-        'create manufacturer' => 'Create a manufacturer',
+        'create manufacturer' => 'Tạo mới nhà sản xuất',
     ],
     'table' => [
         'name' => 'Tên'

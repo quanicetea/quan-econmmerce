@@ -70,15 +70,57 @@ $router->group(['prefix' =>'/order'], function (Router $router) {
         'uses' => 'OrderDetailController@destroy',
         'middleware' => 'can:order.orderdetails.destroy'
     ]);
+    $router->bind('orderadmin', function ($id) {
+        return app('Modules\Order\Repositories\OrderAdminRepository')->find($id);
+    });
+    $router->get('orderadmins', [
+        'as' => 'admin.order.orderadmin.index',
+        'uses' => 'OrderAdminController@index',
+        'middleware' => 'can:order.orderadmins.index'
+    ]);
+    $router->get('orderadmins/create', [
+        'as' => 'admin.order.orderadmin.create',
+        'uses' => 'OrderAdminController@create',
+        'middleware' => 'can:order.orderadmins.create'
+    ]);
+    $router->post('orderadmins', [
+        'as' => 'admin.order.orderadmin.store',
+        'uses' => 'OrderAdminController@store',
+        'middleware' => 'can:order.orderadmins.create'
+    ]);
+    $router->get('orderadmins/{orderadmin}/edit', [
+        'as' => 'admin.order.orderadmin.edit',
+        'uses' => 'OrderAdminController@edit',
+        'middleware' => 'can:order.orderadmins.edit'
+    ]);
+    $router->put('orderadmins/{orderadmin}', [
+        'as' => 'admin.order.orderadmin.update',
+        'uses' => 'OrderAdminController@update',
+        'middleware' => 'can:order.orderadmins.edit'
+    ]);
+    $router->delete('orderadmins/{orderadmin}', [
+        'as' => 'admin.order.orderadmin.destroy',
+        'uses' => 'OrderAdminController@destroy',
+        'middleware' => 'can:order.orderadmins.destroy'
+    ]);
 // append
+
     $router->get('order/data-table', [
         'as' => 'admin.order.order.data-table',
         'uses' => 'OrderController@dataTable',
         'middleware' => 'can:order.orders.index'
     ]);
+    //view detail của admin
     $router->get('order/{order}/view-detail', [
         'as' => 'admin.order.order.view-detail',
         'uses' => 'OrderController@viewDetail',
+        'middleware' => 'can:order.orderdetails.index'
+    ]);
+
+    //view detail của shop
+    $router->get('order/{order}/view-detail/{ci}', [
+        'as' => 'admin.order.order.view-detail-shop',
+        'uses' => 'OrderController@viewDetailShop',
         'middleware' => 'can:order.orderdetails.index'
     ]);
 

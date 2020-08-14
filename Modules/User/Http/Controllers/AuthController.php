@@ -55,6 +55,8 @@ class AuthController extends BasePublicController
     {
         app(UserRegistration::class)->register($request->all());
 
+        return redirect()->route('site.get.login')
+        ->withSuccess(trans('Đăng ký thành công. Kiểm tra email để kích hoạt tài khoản'));
         return redirect()->route('login')
             ->withSuccess(trans('user::messages.account created check email for activation'));
     }
@@ -69,12 +71,16 @@ class AuthController extends BasePublicController
     public function getActivate($userId, $code)
     {
         if ($this->auth->activate($userId, $code)) {
-            return redirect()->route('login')
-                ->withSuccess(trans('user::messages.account activated you can now login'));
+            return redirect()->route('site.get.login')
+            ->withSuccess(trans('Kích hoạt thành công. Bạn có thể đăng nhập ngay'));;
+            // return redirect()->route('login')
+            //     ->withSuccess(trans('user::messages.account activated you can now login'));
         }
-
-        return redirect()->route('register')
-            ->withError(trans('user::messages.there was an error with the activation'));
+        
+        return redirect()->route('site.register')
+            ->withError(trans('Có lỗi gì đó'));
+        // return redirect()->route('register')
+        //     ->withError(trans('user::messages.there was an error with the activation'));
     }
 
     public function getReset()

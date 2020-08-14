@@ -8,12 +8,17 @@ return [
     'title' => [
         'customers' => 'Customer',
         'create customer' => 'Create a customer',
-        'edit customer' => 'Edit a customer',
+        'edit customer' => 'Customer Detail',
     ],
     'button' => [
         'create customer' => 'Create a customer',
     ],
     'table' => [
+        'name'=> 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'address' => 'Address',
+        'action' => 'Action'
     ],
     'form' => [
     ],

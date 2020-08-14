@@ -37,9 +37,9 @@
             <div class="clearfix"></div>
             <section id="invoice-info">
                 <div>
-                  <p><span class="info">{{ trans('order::orders.order-detail.date') }}:</span> {{$order->create_at.date("Y-m-d H:i")}}</p>
+                  <p><span class="info">{{ trans('order::orders.order-detail.date') }}:</span> {{date('Y-m-d H:i', strtotime($order->created_at))}}</p>
                   <p><span class="info">{{ trans('order::orders.order-detail.name') }}:</span> {{$order->customer_firstname}} {{$order->customer_lastname}}</p>
-                  <p><span class="info">{{ trans('order::orders.order-detail.phone') }}:</span> {{$order->customer_number}}</p>
+                  <p><span class="info">{{ trans('order::orders.order-detail.phone') }}:</span> {{$order->customer_phone}}</p>
                   <p><span class="info">{{ trans('order::orders.order-detail.address') }}:</span> {{$order->address}} {{$order->address_ward}} {{$order->address_district}} {{$order->address_city}}</p>
                 </div>
             </section>
@@ -49,7 +49,7 @@
                 <thead>
                     <tr>
                     <th class="product stt">{{trans('order::orders.order-detail.number')}}</th>
-                    <th class="product sp">{{trans('order::orders.order-detail.product')}}</th>
+                    <th colspan="2" class="product sp">{{trans('order::orders.order-detail.product')}}</th>
                     <th class="product">{{trans('order::orders.order-detail.price')}}</th>
                     <th class="product">{{trans('order::orders.order-detail.quantity')}}</th>
                     <th class="product tt">{{trans('order::orders.order-detail.amount')}}</th>
@@ -60,11 +60,12 @@
                     <tr>
                         
                         <td class="service product flag stt">#{{$key+1}}</td>
-                        <td class="desc product flag sp">
+                        <td colspan="2" class="desc product flag sp">
                             @if(isset($orderItem->product))
                             {{$orderItem->product->name}}
                             @endif
                         </td>
+
                         <td class=" product flag">{{number_format($orderItem->price)}} </td>
                         <td class=" product flag">{{number_format($orderItem->quantity)}}
                             @if(isset($orderItem->product))
@@ -76,7 +77,7 @@
                     </tr>
                     @endforeach
                     <tr>
-                        <td colspan="4">{{trans('order::orders.order-detail.subtotal')}}</td>
+                        <td colspan="5">{{trans('order::orders.order-detail.subtotal')}}</td>
                         <td class=" product tt">{{number_format($order->sub_total)}}</td>
                     </tr>
                     {{-- <tr>
@@ -88,7 +89,7 @@
                         <td class=" product tt">{{number_format($order->fee_shipping)}}</td>
                     </tr> --}}
                     <tr>
-                        <td colspan="4" class="grand total">{{trans('order::orders.order-detail.total')}}</td>
+                        <td colspan="5" class="grand total">{{trans('order::orders.order-detail.total')}}</td>
                         <td class="grand total product tt">{{number_format($order->sub_total)}}</td>
                     </tr>
                 </tbody>

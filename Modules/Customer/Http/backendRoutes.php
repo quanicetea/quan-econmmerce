@@ -39,4 +39,10 @@ $router->group(['prefix' =>'/customer'], function (Router $router) {
     ]);
 // append
 
+    $router->get('datatable', [
+        'as' => 'admin.customer.customer.datatable',
+        'uses' => 'CustomerController@datatable',
+        'middleware' => 'can:customer.customers.index'
+    ]);
+
 });

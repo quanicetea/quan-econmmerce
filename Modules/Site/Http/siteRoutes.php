@@ -104,7 +104,7 @@ $router->get('category/{slug}', [
 ]);
 $router->get('/register', [
     'uses' => 'Site\SiteController@getRegister',
-    'as' => 'site..get.register',
+    'as' => 'site.get.register',
     'middleware' => config('asgard.page.config.middleware'),
 ]);
 $router->post('/register', [
@@ -140,5 +140,10 @@ $router->post('/profile/{id}', [
 $router->get('/forgotpassword', [
     'uses' => 'Site\SiteController@getForgotpassword',
     'as' => 'site.get.forgotpassword',
+    'middleware' => config('asgard.page.config.middleware'),
+]);
+$router->get('/detail/{unique_id}', [
+    'uses' => 'Site\SiteController@detail',
+    'as' => 'site.detail',
     'middleware' => config('asgard.page.config.middleware'),
 ]);

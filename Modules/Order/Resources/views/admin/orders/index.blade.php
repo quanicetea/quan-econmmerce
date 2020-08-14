@@ -26,7 +26,6 @@
                                 <th>{{trans('order::orders.table.order date')}}</th>
                                 <th>{{trans('order::orders.table.customer')}}</th>
                                 <th>{{trans('order::orders.table.address')}}</th>
-                                <th>{{trans('order::orders.table.status')}}</th>
                                 <th>{{trans('order::orders.table.total')}}</th>
                                 <th>{{trans('core::core.table.actions')}}</th>
                             </thead>
@@ -71,32 +70,31 @@
     <script type="text/javascript">
     $( document ).ready(function() {
         var oTable = $('.data-table').DataTable({
-                processing:true,
-                serverSide:true,
-                sort: false,
-                ajax: {
-                    url: '{{ route('admin.order.order.data-table') }}',
-                    data: function (d) {
-                        d.status = $('#status').val();
-                        d.start_date = $('#val-start-date').val();
-                        d.end_date = $('#val-end-date').val();
-                    }
-                },
-                columns: [
-                    {data:'id',searchable:true},
-                    {data:'order_code',searchable:true},
-                    {data:'order_date',searchable:false},
-                    {data:'customer_name',searchable:true},                    
-                    {data:'address',searchable:true},
-                    {data:'status',searchable:true},
-                    {data:'total',searchable:true},
-                    {data:'action',searchable:true},
-                ],
-                "order": [ 0, 'desc' ],
-                "language": {
-                    "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+            processing:true,
+            serverSide:true,
+            sort: false,
+            ajax: {
+                url: '{{ route('admin.order.order.data-table') }}',
+                data: function (d) {
+                    d.status = $('#status').val();
+                    d.start_date = $('#val-start-date').val();
+                    d.end_date = $('#val-end-date').val();
                 }
-            });
+            },
+            columns: [
+                {data:'id',searchable:true},
+                {data:'order_code',searchable:true},
+                {data:'order_date',searchable:false},
+                {data:'customer_name',searchable:true},                    
+                {data:'address',searchable:true},
+                {data:'total',searchable:true},
+                {data:'action',searchable:true},
+            ],
+            "order": [ 0, 'desc' ],
+            "language": {
+                "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+            }
+        });
     });
     </script>
 @endpush

@@ -28,6 +28,23 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		<!-- Facebook Pixel Code -->
+		<script>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '281841539542303');
+			fbq('track', 'PageView');
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+			src="https://www.facebook.com/tr?id=281841539542303&ev=PageView&noscript=1"/>
+		</noscript>
+			<!-- End Facebook Pixel Code -->
 		@yield('css')
 	</head>
 	<body>
@@ -38,8 +55,8 @@
 					<div class="row">
 						<div class="col-sm-6 col-left-topbar">
 							<div class="left-topbar">
-								Shop unique and handmade items directly 
-								<a href="#">About<i class="fa fa-long-arrow-right"></i></a>
+								{{-- Shop unique and handmade items directly  --}}
+								{{-- <a href="#">About<i class="fa fa-long-arrow-right"></i></a> --}}
 							</div>
 						</div>
 						<div class="col-sm-6 col-right-topbar">
@@ -1884,6 +1901,9 @@
 			});	/*ready*/
 			
 			$(document).ready(function() {
+				fbq('track','PageView');
+				// var ref = document.referrer;
+				// console.log("liên kết trước: "+ref);
 				//show số lượng cart trên mini cart
 				$.ajax({
 					url: '{{route('site.showcart')}}',

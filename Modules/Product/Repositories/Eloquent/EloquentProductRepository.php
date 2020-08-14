@@ -15,18 +15,22 @@ class EloquentProductRepository extends EloquentBaseRepository implements Produc
     //     $this->manufacturer = $manufacturer;
     // }
     public function getData($request){
-        $owner = Auth::user();
-        if($owner->id==1){
-            $products = $this->model->orderBy('id','DESC')->with('category');
+        $products = $this->model->orderBy('id','DESC')->with('category')->with('manufacturer')->with('getUnit');
             if($request->category){
                 $products->where('category_id', $request->category);
             }
-        }else{
-            $products = $this->model->orderBy('id','DESC')->with('category')->where('user_id',$owner->id);
-            if($request->category){
-                $products->where('category_id', $request->category);
-            }
-        }
+        // $owner = Auth::user();
+        // if($owner->id==1){
+        //     $products = $this->model->orderBy('id','DESC')->with('category')->with('manufacturer')->with('getUnit');
+        //     if($request->category){
+        //         $products->where('category_id', $request->category);
+        //     }
+        // }else{
+        //     $products = $this->model->orderBy('id','DESC')->with('category')->where('user_id',$owner->id);
+        //     if($request->category){
+        //         $products->where('category_id', $request->category);
+        //     }
+        // }
         
         return $products;
     }

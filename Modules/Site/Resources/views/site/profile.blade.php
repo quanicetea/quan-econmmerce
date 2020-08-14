@@ -80,13 +80,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
+                                    {{-- <div class="form-row">
                                         <label for="changePassWord" class="inline form-flat-checkbox">
                                             <input name="changePassWord" type="checkbox" id="changePassWord" value=""><i></i>Change Password 
                                         </label>
                                         <br><br>
-                                    </div>
-                                    <div class="change-password" id="change-password">
+                                    </div> --}}
+                                    {{-- <div class="change-password" id="change-password">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-row form-row-wide">
@@ -105,7 +105,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-row">
                                         <button class="btn btn-outline rounded" type="submit">Save</button>
                                     </div>
