@@ -28,4 +28,8 @@ return [
     'last_name' => 'Tên',
     'password' => 'Mật khẩu',
     'password confirmation' => 'Nhập lại mật khẩu',
+    'new password' => 'Mật khẩu mới',
+    'change password' => 'Đổi mật khẩu',
+    'reset password' => 'Đặt lại mật khẩu',
+
 ];

@@ -7,12 +7,12 @@
                 <li>
                     <span>
                         <a class="home" href="#">
-                            <span>Home</span>
+                            <span>Trang chủ</span>
                         </a>
                     </span>
                 </li>
                 <li>
-                    <span>Empty Cart</span>
+                    <span>Giỏ hàng</span>
                 </li>
             </ul>
         </div>
@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="main-content">
                     <div class="commerce">
-                        <p class="cart-empty">Your cart is currently empty.</p>
+                        <p class="cart-empty">Hình như bạn chưa có sản phẩm nào trong giỏ hàng !</p>
                         <p class="return-to-shop"><a class="button wc-backward rounded" href="#">Return To Shop</a></p>
                     </div>
                 </div>

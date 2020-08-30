@@ -32,16 +32,16 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('first_name') ? ' has-error has-feedback' : '' }}">
-                                                    <label for="first_name">{{ trans('user::auth.first_name') }}</label>
+                                                <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('first_name') ? ' has-error has-feedback' : '' }}">
+                                                    <label for="first_name">{{ trans('user::auth.first_name') }} <span class="required">*</span></label>
                                                     <input type="text" name="first_name" class="form-control" autofocus
                                                            placeholder="{{ trans('user::auth.first_name') }}" value="{{ old('first_name') }}">
                                                     {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('last_name') ? ' has-error has-feedback' : '' }}">
-                                                    <label for="last_name">{{ trans('user::auth.last_name') }}</label>
+                                                <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('last_name') ? ' has-error has-feedback' : '' }}">
+                                                    <label for="last_name">{{ trans('user::auth.last_name') }} <span class="required">*</span></label>
                                                     <input type="text" name="last_name" class="form-control" autofocus
                                                            placeholder="{{ trans('user::auth.last_name') }}" value="{{ old('last_name') }}">
                                                     {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
@@ -51,16 +51,16 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
-                                                    <label for="email">{{ trans('user::auth.email') }}</label>
+                                                <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
+                                                    <label for="email">{{ trans('user::auth.email') }} <span class="required">*</span></label>
                                                     <input type="email" name="email" class="form-control" autofocus
                                                            placeholder="{{ trans('user::auth.email') }}" value="{{ old('email') }}">
                                                     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('phone') ? ' has-error has-feedback' : '' }}">
-                                                    <label for="phone">{{ trans('user::auth.phone') }}</label>
+                                                <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('phone') ? ' has-error has-feedback' : '' }}">
+                                                    <label for="phone">{{ trans('user::auth.phone') }} <span class="required">*</span></label>
                                                     <input type="text" name="phone" class="form-control" autofocus
                                                            placeholder="{{ trans('user::auth.phone') }}" value="{{ old('phone') }}">
                                                     {!! $errors->first('phone', '<span class="help-block">:message</span>') !!}
@@ -71,15 +71,15 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('password') ? ' has-error has-feedback' : '' }}">
-                                                    <label for="password">{{ trans('user::auth.password') }}</label>
+                                                <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('password') ? ' has-error has-feedback' : '' }}">
+                                                    <label for="password">{{ trans('user::auth.password') }} <span class="required">*</span></label>
                                                     <input id="pw" type="password" name="password" class="form-control" placeholder="{{ trans('user::auth.password') }}">
                                                     {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? ' has-error has-feedback' : '' }}">
-                                                    <label for="password_confirm">{{ trans('user::auth.password confirmation') }}</label>
+                                                <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('password_confirmation') ? ' has-error has-feedback' : '' }}">
+                                                    <label for="password_confirm">{{ trans('user::auth.password confirmation') }} <span class="required">*</span></label>
                                                     <input type="password" name="password_confirmation" class="form-control" placeholder="{{ trans('user::auth.password confirmation') }}">
                                                     {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
                                                 </div>
@@ -87,8 +87,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="form-group has-feedback {{ $errors->has('address') ? ' has-error has-feedback' : '' }}">
-                                            <label for="address">{{ trans('user::auth.address') }}</label>
+                                        <div class="form-group has-feedback form-row form-row-wide {{ $errors->has('address') ? ' has-error has-feedback' : '' }}">
+                                            <label for="address">{{ trans('user::auth.address') }} <span class="required">*</span></label>
                                             <input type="text" name="address" class="form-control" autofocus
                                                    placeholder="{{ trans('user::auth.address') }}" value="{{ old('address') }}">
                                             {!! $errors->first('address', '<span class="help-block">:message</span>') !!}

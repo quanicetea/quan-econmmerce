@@ -109,6 +109,7 @@ class AuthController extends BasePublicController
 
     public function postResetComplete($userId, $code, ResetCompleteRequest $request)
     {
+        dd($request->all());
         try {
             app(UserResetter::class)->finishReset(
                 array_merge($request->all(), ['userId' => $userId, 'code' => $code])

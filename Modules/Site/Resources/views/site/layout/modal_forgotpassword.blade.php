@@ -7,7 +7,7 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                     </button>
-                    <h4 class="modal-title">Forgot Password</h4>
+                    <h4 class="modal-title">Quên mật khẩu</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -25,9 +25,9 @@
                 </div>
                 <div class="modal-footer">
                     <span class="user-login-modal-link pull-left">
-                        <a data-rel="loginModal" href="#loginModal">Already have an account?</a>
+                        <a data-rel="loginModal" href="#loginModal">Đăng nhập</a>
                     </span>
-                    <button type="submit" class="btn btn-default btn-outline">Send</button>
+                    <button type="submit" class="btn btn-default btn-outline">Gửi</button>
                 </div>
             </form>
         </div>

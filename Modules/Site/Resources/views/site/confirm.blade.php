@@ -7,12 +7,12 @@
                 <li>
                     <span>
                         <a class="home" href="#">
-                            <span>Home</span>
+                            <span>Trang chủ</span>
                         </a>
                     </span>
                 </li>
                 <li>
-                    <span>Checkout</span>
+                    <span>Xác nhận</span>
                 </li>
             </ul>
         </div>
@@ -27,7 +27,7 @@
                     <div class="main-content">
                         <div class="col-sm-4">
                             <h3 class="heading-left-custom">
-                                Địa chỉ giao hàng
+                                Thông tin giao hàng
                             </h3>
                             <div class="row row-fluid">
                                 <div class="col-sm-12">
@@ -35,14 +35,14 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="wpcf7-form-control-wrap ">
-                                                <p>{{isset($customer->first_name)?$customer->first_name:''}} {{isset($customer->last_name)?$customer->last_name:''}}</p>
+                                                <p><b>Họ và tên: </b>{{isset($customer->first_name)?$customer->first_name:''}} {{isset($customer->last_name)?$customer->last_name:''}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="wpcf7-form-control-wrap ">
-                                                <p>{{isset($customer->address)?$customer->address:''}}</p>
+                                                <p><b>Địa chỉ: </b>{{isset($customer->address)?$customer->address:''}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="wpcf7-form-control-wrap ">
-                                                    <p>Điện thoại: {{isset($customer->phone)?$customer->phone:''}}</p>
+                                                    <p><b>Điện thoại:</b> {{isset($customer->phone)?$customer->phone:''}}</p>
                                                     <input type="hidden" value="{{$customer->phone}}" name="phone">
                                                 </div>
                                             </div>
@@ -59,7 +59,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="wpcf7-form-control-wrap ">
-                                                    <p>Email: {{isset($customer->email)?$customer->email:''}}</p>
+                                                    <p><b>Email:</b> {{isset($customer->email)?$customer->email:''}}</p>
                                                 </div>
                                             </div>
                                         </div>

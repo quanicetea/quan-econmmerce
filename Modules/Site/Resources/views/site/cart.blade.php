@@ -7,12 +7,12 @@
                 <li>
                     <span>
                         <a class="home" href="#">
-                            <span>Home</span>
+                            <span>Trang chủ</span>
                         </a>
                     </span>
                 </li>
                 <li>
-                    <span>Cart</span>
+                    <span>Giỏ hàng</span>
                 </li>
             </ul>
         </div>
@@ -30,11 +30,11 @@
                                 <thead>
                                     <tr>
                                         <th class="product-remove hidden-xs">#</th>
-                                        <th class="product-thumbnail hidden-xs">Image</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price text-center">Price</th>
-                                        <th class="product-quantity text-center">Quantity</th>
-                                        <th class="product-subtotal text-center hidden-xs">Total</th>
+                                        <th class="product-thumbnail hidden-xs">Hình ảnh</th>
+                                        <th class="product-name">Sản phẩm</th>
+                                        <th class="product-price text-center">Giá</th>
+                                        <th class="product-quantity text-center">Số lượng</th>
+                                        <th class="product-subtotal text-center hidden-xs">Tổng cộng</th>
                                     </tr>
                                 </thead>
                                 <tbody id="cart-info">
@@ -92,7 +92,7 @@
                         <hr>
                         <div class="cart-collaterals">
                             <div class="cart_totals">
-                                <h2>Cart Totals</h2>
+                                <h2>Giỏ hàng</h2>
                                 <table>
                                     <tr class="cart-subtotal">
                                         <th>Thành tiền</th>
@@ -113,8 +113,8 @@
                             </div>
                         </div>
                         @else
-                        <p class="cart-empty">Your cart is currently empty.</p>
-                    <p class="return-to-shop"><a class="button wc-backward rounded" href="{{ route('site.homepage')}}">Return To Shop</a></p>
+                        <p class="cart-empty">Hình như bạn chưa có sản phẩm nào trong giỏ hàng cả !!.</p>
+                    <p class="return-to-shop"><a class="button wc-backward rounded" href="{{ route('site.homepage')}}">Quay về trang mua hàng</a></p>
                         @endif
                     </div>
                 </div>

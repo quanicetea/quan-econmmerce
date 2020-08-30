@@ -30,6 +30,7 @@ use Modules\Site\Service\CreateOrderAdminService;
 // use Modules\Site\Http\Requests\RegisterRequest;
 use Modules\User\Http\Requests\RegisterRequest;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Hash;
 // use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 class SiteController extends BasePublicController
 {
@@ -223,12 +224,9 @@ class SiteController extends BasePublicController
     public function success(Request $request){
         $order_code = $request->order_code;
         $order_email = $request->order_email;
-        // $order = $this->order->findByAttributes(['order_code' => $order_code]);
-        // dd($order);
-        
-        
+        $order = $this->order->findByAttributes(['order_code' => $order_code]);
         Cart::destroy();
-        return view('site::site.success',compact('order_code','order_email'));
+        return view('site::site.success',compact('order_code','order_email','order'));
     }
 
     public function productByCateGory(Request $request)
@@ -345,8 +343,10 @@ class SiteController extends BasePublicController
     }
     public function updateProfile(Request $request){
         // dd($request->all());
+        // $data['password'] = Hash::make($data['password']);
         $customer = $this->customer->updateCustomer($request->all());
-        // dd(redirect()->back());
+        $customer->password = Hash::make($request->user_new_password);
+        $customer->save();
         return redirect()->back();
     }
     public function getForgotpassword(){
@@ -360,4 +360,9 @@ class SiteController extends BasePublicController
         $product = $this->product->findByAttributes(['unique_id' => $request->unique_id]);
         return view('site::site.detail',compact('product'));
     }
+    private function hashPassword(array &$data)
+    {
+        $data['password'] = Hash::make($data['password']);
+    }
 }
+

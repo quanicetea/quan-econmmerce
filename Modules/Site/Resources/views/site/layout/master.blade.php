@@ -70,8 +70,8 @@
 												<span>{{$user->first_name}} &nbsp;{{$user->last_name}}</span> 
 											</a>
 											<ul class="dropdown-menu dropdown-menu-profile">
-											<li class="mega-col-3 " ><a href="{{route('site.get.profile',$user->id)}}">Profile</a></li>
-											<li class="mega-col-3 " ><a href="{{route('site.get.logout')}}">Logout</a></li>
+											<li class="mega-col-3 " ><a href="{{route('site.get.profile',$user->id)}}">Thông tin cá nhân</a></li>
+											<li class="mega-col-3 " ><a href="{{route('site.get.logout')}}">Đăng xuất</a></li>
                                                 {{-- <div class="row">
                                                     <div class="col-sm-3">
                                                         <li class="mega-col-3">
