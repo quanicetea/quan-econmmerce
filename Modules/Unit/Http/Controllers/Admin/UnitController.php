@@ -95,6 +95,10 @@ class UnitController extends AdminBaseController
      */
     public function destroy(Unit $unit)
     {
+        if(count($unit->products)>0){
+            return redirect()->route('admin.unit.unit.index')
+            ->withError('Không thể xoá đơn vị vì đã có sản phẩm', ['name' => trans('unit::units.title.units')]); 
+        }
         $this->unit->destroy($unit);
 
         return redirect()->route('admin.unit.unit.index')

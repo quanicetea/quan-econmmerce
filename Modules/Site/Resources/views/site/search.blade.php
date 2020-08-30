@@ -6,7 +6,7 @@
             <div class="col-md-9 main-wrap">
                 <div class="main-content">
                     <div class="shop-toolbar">
-                        
+                        <h2>Kết quả tìm kiếm ({{($products->total())}})</h2>
                     </div>
                     <div class="shop-loop grid">
                         <ul class="products">
@@ -25,11 +25,11 @@
                                             </div>
                                         </div>
                                         <figcaption>
-                                            <div class="info-meta clearfix">
+                                            {{-- <div class="info-meta clearfix">
                                                 <div>
                                                     {{$product->user->first_name}}  {{$product->user->last_name}}
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="shop-loop-product-info">
                                                 <div class="info-content-wrap">
                                                     <h3 class="product_title">
@@ -75,18 +75,13 @@
             </div>
             <div class="col-md-3 sidebar-wrap">
                 <div class="main-sidebar">
-                    <div class="widget commerce widget_product_search">
+                    {{-- <div class="widget commerce widget_product_search">
                         <h4 class="widget-title">
                             <span>Product Search</span>
                         </h4>
-                        {{-- <form class="commerce-product-search" >
-                            <label class="screen-reader-text" for="s">Search for:</label>
-                            <input type="search" class="search-field rounded" placeholder="Search Products&hellip;" value="" name="s"/>
-                            <input type="submit" value="Search"/>
-                        </form> --}}
-                    </div>
+                    </div> --}}
                     
-                    <div class="widget widget_layered_nav">
+                    {{-- <div class="widget widget_layered_nav">
                         <button id="loc" class="btn btn-primary">lọc</button>
                         <form class="commerce-product-search-1" action="{{route('site.search')}}">
                         <input type="hidden" name="search_key" value="{{$search_key}}">
@@ -103,7 +98,7 @@
                                 @endforeach
                             </ul>
                         </form>
-                    </div>
+                    </div> --}}
                     <div class="widget widget_product_categories">
                         <h4 class="widget-title"><span>Categories</span></h4>
                         <ul class="product-categories">
@@ -115,6 +110,8 @@
                 </div>
             </div>
         </div>
+        {{-- {{$products->links()}} --}}
+        {{$products->appends(request()->except('page'))}}
     </div>
 </div>
 @endsection

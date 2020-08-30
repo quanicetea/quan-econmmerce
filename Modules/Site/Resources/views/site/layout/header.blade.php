@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="navbar-default-col">
                             <div class="navbar-wrap">
-                                <div class="navbar-header">
+                                <div class="navbar-header" style="height:30px !important;">
                                     <a class="navbar-search-button search-icon-mobile" href="#">
                                         <i class="fa fa-search"></i>
                                     </a>
@@ -27,7 +27,7 @@
                                             </a>
                                         </li>
                                         <li class="menu-item-has-children megamenu megamenu-fullwidth dropdown">
-                                            <a href="shop.html" class="dropdown-hover">
+                                            <a href="{{route('site.homepage')}}" class="dropdown-hover">
                                                 <span class="underline">Danh mục</span> <span class="caret"></span>
                                             </a>
                                             <ul class="dropdown-menu">
@@ -83,8 +83,16 @@
             <div class="header-search-overlay hide">
                 <div class="container">
                     <div class="header-search-overlay-wrap">
-                    <form class="searchform" action="{{route('site.search')}}">
-                            <input type="search" class="searchinput" name="search_key" autocomplete="off" value="" placeholder="Search..."/>
+                        <form class="searchform" action="{{route('site.search')}}">
+                            <input type="search" class="searchinput" name="search_key" autocomplete="off" value="" placeholder="Nhập tên sản phẩm"/>
+                            <input type="search" class="searchinput" name="price" autocomplete="off" value="" placeholder="Nhập giá muốn tìm"/>
+                            <input type="radio" checked name="type" value ="0"> Không tìm theo giá
+                            <input type="radio" name="type" value ="1"> Chính xác
+                            <input type="radio" name="type" value ="2"> Nhỏ hơn hoặc bằng
+                            <input type="radio" name="type" value ="3"> Lớn hơn hoặc bằng
+                            <button style="display:none" type="submit">
+                                <span aria-hidden="true">Tìm</span>
+                            </button>
                         </form>
                         <button type="button" class="close">
                             <span aria-hidden="true" class="fa fa-times"></span>

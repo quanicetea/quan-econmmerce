@@ -61,6 +61,9 @@ class OrderController extends AdminBaseController
         ->editColumn('order_date', function($order){
             return date('Y-m-d H:i', strtotime($order->created_at));
         })
+        ->addColumn('status', function($order){
+            return view('order::admin.orders.partials.option-status', compact('order'))->render();
+        })
         ->addColumn('action', function($order){
             return '<div class="btn-group">
                         <a href="'. route('admin.order.order.view-detail', [$order->id]) .'" class="btn btn-default btn-flat"><i class="fa fa-eye"></i></a></div>';
@@ -68,6 +71,17 @@ class OrderController extends AdminBaseController
         ->rawColumns(['customer_name', 'action', 'status','address','total'])->addIndexColumn()->make(true);
     }
 
+    public function changeStatus(Request $request) {
+        $order_id = $request->order_id;
+        $status_id = $request->status_id;
+        $query_orders = Order::find($order_id);
+        if ($query_orders) {
+            $query_orders->status = $status_id;
+            $query_orders->save();
+            return 1;
+        }
+        return 2;
+    }
     /**
      * Show the form for creating a new resource.
      *

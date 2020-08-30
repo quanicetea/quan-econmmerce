@@ -1,6 +1,6 @@
 @extends('site::site.layout.master')
 @section('content')
-<div class="heading-container heading-resize heading-no-button">
+{{-- <div class="heading-container heading-resize heading-no-button">
     <div class="heading-background heading-parallax bg-shop">
         <div class="container">
             <div class="row">
@@ -13,9 +13,6 @@
                                     <li>
                                         <span><a class="home" href="/"><span>Trang chủ</span></a></span>
                                     </li>
-                                    {{-- <li>
-                                        <span><a href="#"><span>Shop</span></a></span> 
-                                    </li> --}}
                                     <li>
                                     <span>{{$category->name}}</span>
                                     </li>
@@ -27,13 +24,17 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
 <div class="content-container commerce page-layout-left-sidebar">
     <div class="container">
+        {{-- {{$products->links()}} --}}
+        
         <div class="row">
             <div class="col-md-9 main-wrap">
                 <div class="main-content">
                     <div class="shop-toolbar">
+                    <h2>{{$category->name}} ({{count($category->products)}})</h2>
                         <form class="commerce-ordering clearfix">
                             <div class="commerce-ordering-select">
                                 {{-- <label class="hide">Sorting:</label>
@@ -64,7 +65,7 @@
                     </div>
                     <div class="shop-loop grid">
                         <ul class="products">
-                            @foreach($category->products as $product)
+                            @foreach($products as $product)
                             <li class="product product-no-border style-2 col-md-3 col-sm-6">
                                 <div class="product-container">
                                     <figure>
@@ -79,11 +80,11 @@
                                             </div>
                                         </div>
                                         <figcaption>
-                                            <div class="info-meta clearfix">
+                                            {{-- <div class="info-meta clearfix">
                                                 <div>
                                                     {{$product->user->first_name}}  {{$product->user->last_name}}
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="shop-loop-product-info">
                                                 <div class="info-content-wrap">
                                                     <h3 class="product_title">
@@ -111,6 +112,7 @@
                             @endforeach
                         </ul>
                     </div>
+
                     {{-- <nav class="commerce-pagination">
                         <p class="commerce-result-count">
                             Showing 1&ndash;12 of 14 results
@@ -129,16 +131,11 @@
             </div>
             <div class="col-md-3 sidebar-wrap">
                 <div class="main-sidebar">
-                    <div class="widget commerce widget_product_search">
+                    {{-- <div class="widget commerce widget_product_search">
                         <h4 class="widget-title">
                             <span>Product Search</span>
                         </h4>
-                        {{-- <form class="commerce-product-search" >
-                            <label class="screen-reader-text" for="s">Search for:</label>
-                            <input type="search" class="search-field rounded" placeholder="Search Products&hellip;" value="" name="s"/>
-                            <input type="submit" value="Search"/>
-                        </form> --}}
-                    </div>
+                    </div> --}}
                     {{-- <div class="widget widget_layered_nav">
                         <h4 class="widget-title">
                             <span>Filter by Color</span>
@@ -175,29 +172,16 @@
                             </div>
                         </form>
                     </div> --}}
-                    <div class="widget widget_layered_nav">
+                    {{-- <div class="widget widget_layered_nav">
                         <h4 class="widget-title"><span>Manufacturer</span></h4>
                         <ul>
                             @foreach($manufacturers as $manufacturer)
                             <li>
-                                {{-- <a href="">Adesso</a> <small class="count">11</small> --}}
-                            <input class="manufacturer" name="{{$manufacturer->slug}}" type="checkbox"> &nbsp;{{$manufacturer->name}}<small class="count">{{count($manufacturer->products)}}</small>
+                                <input class="manufacturer" name="{{$manufacturer->slug}}" type="checkbox"> &nbsp;{{$manufacturer->name}}<small class="count">{{count($manufacturer->products)}}</small>
                             </li>
                             @endforeach
-                            {{-- <li>
-                                <a href="#">Barbour</a> <small class="count">6</small>
-                            </li>
-                            <li>
-                                <a href="#">Carvela</a> <small class="count">9</small>
-                            </li>
-                            <li>
-                                <a href="#">Crocs</a> <small class="count">10</small>
-                            </li>
-                            <li>
-                                <a href="#">Evans</a> <small class="count">12</small>
-                            </li> --}}
-                        </ul>
-                    </div>
+                            
+                    </div> --}}
                     <div class="widget widget_product_categories">
                         <h4 class="widget-title"><span>Categories</span></h4>
                         <ul class="product-categories">
@@ -257,7 +241,9 @@
                 </div>
             </div>
         </div>
+        {{$products->links()}}
     </div>
+    {{-- {{ $category->links() }} --}}
 </div>
 @endsection
 @section('script')

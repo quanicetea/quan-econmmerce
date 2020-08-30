@@ -29,6 +29,8 @@ use Modules\Site\Http\Requests\LoginRequest;
 use Modules\Site\Service\CreateOrderAdminService;
 // use Modules\Site\Http\Requests\RegisterRequest;
 use Modules\User\Http\Requests\RegisterRequest;
+use Illuminate\Pagination\Paginator;
+// use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 class SiteController extends BasePublicController
 {
     private $order;
@@ -83,10 +85,12 @@ class SiteController extends BasePublicController
         $products = $this->product->getNewProducts();
         $user = Auth::user();
         // dd($user);
+        $categories = $this->category->all();
+        // dd($category);
         if($user){
-            return view('site::site.index',compact('products','user'));
+            return view('site::site.index',compact('products','user','categories'));
         }else{
-            return view('site::site.index',compact('products'));
+            return view('site::site.index',compact('products','categories'));
         }
         
     }
@@ -227,9 +231,15 @@ class SiteController extends BasePublicController
         return view('site::site.success',compact('order_code','order_email'));
     }
 
-    public function productByCateGory(Request $request){
+    public function productByCateGory(Request $request)
+    {
         $category = $this->category->findBySlug($request->slug);
-        return view('site::site.product_by_category',compact('category'));
+        $products = Product::where('category_id','=',$category->id)->paginate(9);
+        // $category = \DB::table('category')->paginate(15);
+        // $category = Category::paginate(15);
+        // dd($category);
+        // $category = Category::where('slug', '=', $request->slug)->paginate(15);
+        return view('site::site.product_by_category',compact('products','category'));
     }
 
     public function show()
@@ -286,14 +296,16 @@ class SiteController extends BasePublicController
         $request_manufacturers = $request->manufacturer??null;
         $search_key = $request->search_key??'';
         $products = $this->searchProductService->searchProducts($request);
+        // $products->appends(Input::except('page'));
         return view('site::site.search',compact('products','search_key','request_manufacturers'));
+        // return view('site::site.search')
     }
 
-    public function register(RegisterRequest $request){
-        // dd($request->all());
-        $this->customer->createCustomer($request->all());
-        return redirect()->route('site.homepage');
-    }
+    // public function register(RegisterRequest $request){
+    //     // dd($request->all());
+    //     $this->customer->createCustomer($request->all());
+    //     return redirect()->route('site.homepage');
+    // }
     public function getLogin(){
         if(Auth::check()){
             return redirect()->route('site.homepage');

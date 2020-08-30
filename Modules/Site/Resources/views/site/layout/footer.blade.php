@@ -44,18 +44,13 @@
         <div class="container">
             <div class="footer-widget-wrap">
                 <div class="row">
-                    <div class="footer-widget-col col-md-3 col-sm-6">
+                    <div class="footer-widget-col col-md-4 col-sm-6">
                         <div class="widget widget_text">
                             <div class="textwidget">
                                 <ul class="address">
                                     <li>
-                                        <i class="fa fa-home"></i>
-                                        <h4>Address:</h4>
-                                        <p>180 Cao Lỗ, Phường 4, Quận 8, Thành phố Hồ Chí Minh</p>
-                                    </li>
-                                    <li>
                                         <i class="fa fa-mobile"></i>
-                                        <h4>Phone:</h4>
+                                        <h4>Số điện thoại:</h4>
                                         <p>0974.262.539</p>
                                     </li>
                                     <li>
@@ -63,19 +58,24 @@
                                         <h4>Email:</h4>
                                         <p><a href="mailto:quanicetea@gmail.com">quanicetea@gmail.com</a></p>
                                     </li>
+                                    <li>
+                                        <i class="fa fa-home"></i>
+                                        <h4>Địa chỉ:</h4>
+                                        <p>3A66/2 Ấp 3, Trần Văn Giàu, xã Phạm Văn Hai, Huyện Bình Chánh, TPHCM</p>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="footer-widget-col col-md-3 col-sm-6">
+                    <div class="footer-widget-col col-md-4 col-sm-6">
                         <div class="widget widget_nav_menu">
                             <h3 class="widget-title">
-                                <span>infomation</span>
+                                <span>Thông tin</span>
                             </h3>
                             <div class="menu-infomation-container">
                                 <ul class="menu">
-                                    <li><a href="https://www.facebook.com/quanicetea4696">About Us</a></li>
-                                    <li><a href="https://www.facebook.com/quanicetea4696">Contact Us</a></li>
+                                    <li><a href="https://www.facebook.com/quanicetea4696">Về chúng tôi</a></li>
+                                    <li><a href="https://www.facebook.com/quanicetea4696">Liên hệ với chúng tôi</a></li>
                                     {{-- <li><a href="#">Term &#038; Conditions</a></li>
                                     <li><a href="#">Gift Voucher</a></li>
                                     <li><a href="#">BestSellers</a></li> --}}
@@ -83,12 +83,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="footer-widget-col col-md-3 col-sm-6">
+                    {{-- <div class="footer-widget-col col-md-3 col-sm-6">
                         <div class="widget widget_nav_menu">
                             <h3 class="widget-title">
-                                <span>Customer Care</span>
+                                <span>Chăm sóc khách hàng</span>
                             </h3>
-                            {{-- <div class="menu-customer-care-container">
+                            <div class="menu-customer-care-container">
                                 <ul class="menu">
                                     <li><a href="#">Support</a></li>
                                     <li><a href="#">Sitemap</a></li>
@@ -96,19 +96,19 @@
                                     <li><a href="#">Shipping</a></li>
                                     <li><a href="#">Returns</a></li>
                                 </ul>
-                            </div> --}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="footer-widget-col col-md-3 col-sm-6">
+                    </div> --}}
+                    <div class="footer-widget-col col-md-4 col-sm-6">
                         <div class="widget widget_text">
                             <h3 class="widget-title">
-                                <span>open house</span>
+                                <span>Thời gian mở cửa</span>
                             </h3>
                             <div class="textwidget">
                                 <ul class="open-time">
-                                    <li><span>Mon - Fri:</span><span>8am - 8pm</span> </li>
-                                    <li><span>Sat:</span><span>8am - 11am</span> </li>
-                                    <li><span>Sun: </span><span>Closed</span></li>
+                                    <li><span>Thứ 2 - Thứ 7:</span><span>7:00 - 20:30</span> </li>
+                                    {{-- <li><span>Sat:</span><span>8am - 11am</span> </li> --}}
+                                    <li><span>Chủ nhật: </span><span>7:00 - 17:00</span></li>
                                 </ul>
                                 {{-- <h3 class="widget-title">
                                     <span>payment Menthod</span>

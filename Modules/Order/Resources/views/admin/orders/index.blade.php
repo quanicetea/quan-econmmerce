@@ -19,7 +19,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="data-table table table-bordered table-hover">
+                        <table id="orders" class="data-table table table-bordered table-hover">
                             <thead>
                                 <th>#</th>
                                 <th>{{trans('order::orders.table.order code')}}</th>
@@ -27,6 +27,7 @@
                                 <th>{{trans('order::orders.table.customer')}}</th>
                                 <th>{{trans('order::orders.table.address')}}</th>
                                 <th>{{trans('order::orders.table.total')}}</th>
+                                <th>{{trans('order::orders.table.status')}}</th>
                                 <th>{{trans('core::core.table.actions')}}</th>
                             </thead>
 
@@ -88,6 +89,7 @@
                 {data:'customer_name',searchable:true},                    
                 {data:'address',searchable:true},
                 {data:'total',searchable:true},
+                {data:'status',searchable:true},
                 {data:'action',searchable:true},
             ],
             "order": [ 0, 'desc' ],
@@ -95,6 +97,42 @@
                 "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
             }
         });
+        $("#orders").on("focus", "#status_option", function () {
+                prev_val = $(this).val();
+            })
+            
+            $(document).on('change','.status_option',function () {
+                var order_id= $(this).attr("data-id");
+                var status_id = $(this).val();
+                var cont = $('#cont').val();
+                console.log(status_id,order_id)
+                var success = confirm(cont);
+                if (success == true) {
+                    $.ajax({
+                        type: 'post',
+                        url: '{{route('admin.order.order.change-status')}}',
+                        data: {
+                            'status_id': status_id,
+                            'order_id': order_id,
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        beforeSend: function () {
+                            $('.loading').addClass('active');
+                        },
+                        success: function (data) {
+                            $('.loading').removeClass('active');
+                            if (data == 1) {
+                                alert("Change status success.");
+                            } else {
+                                alert('Change status failed.');
+                            }
+                        }
+                    });
+                } else {
+                    $('#status_option').val(prev_val);
+                    alert('Cancel change status.');
+                }
+            });
     });
     </script>
 @endpush

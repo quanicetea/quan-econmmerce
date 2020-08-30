@@ -123,5 +123,9 @@ $router->group(['prefix' =>'/order'], function (Router $router) {
         'uses' => 'OrderController@viewDetailShop',
         'middleware' => 'can:order.orderdetails.index'
     ]);
-
+    $router->post('order/change-status', [
+        'as' => 'admin.order.order.change-status',
+        'uses' => 'OrderController@changeStatus',
+        'middleware' => 'can:order.orders.index'
+    ]);
 });

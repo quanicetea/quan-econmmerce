@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="commerce commerce-account">
-                                    <h2 class="commerce-account-heading">Register</h2>
+                                    <h2 class="commerce-account-heading">Đăng ký</h2>
                                     @include('site::site.layout.notifications')
                                 <form id="login-form" class="login" method="POST" action="{{route('register.post')}}">
                                     {{csrf_field()}}
@@ -96,10 +96,10 @@
                                     </div>
                                     
                                     <div class="form-row">
-                                        <button class="btn btn-outline rounded" type="submit">Register</button>
+                                        <button class="btn btn-outline rounded" type="submit">Đăng ký</button>
                                     </div>
                                     <div class="lost_password">
-                                        <a href="#lostpasswordModal" data-rel="lostpasswordModal">Lost your password?</a>
+                                        <a href="#lostpasswordModal" data-rel="lostpasswordModal">Quên mật khẩu</a>
                                     </div>
                                     </form>
                                 </div>
@@ -163,7 +163,7 @@
 					"password":{
 						required: "Chưa nhập mật khẩu",
 					},
-					"password_confirm":{
+					"password_confirmation":{
 						required: "Chưa nhập lại mật khẩu",
 						equalTo: "Mật khẩu không trùng khớp"
 					},

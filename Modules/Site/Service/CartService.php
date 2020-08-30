@@ -25,7 +25,7 @@ class CartService
     {
         $cart = Cart::content();
         foreach ($cart as $c) {
-            if($c->id == $request->product_id)
+            if($c->id == $request->unique_id)
                 Cart::remove($c->rowId);
         }
     }

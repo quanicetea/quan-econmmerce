@@ -55,6 +55,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-left-topbar">
 							<div class="left-topbar">
+								<a href="/">TIỆM TẠP HOÁ MỸ NGA</a>
 								{{-- Shop unique and handmade items directly  --}}
 								{{-- <a href="#">About<i class="fa fa-long-arrow-right"></i></a> --}}
 							</div>
@@ -87,7 +88,7 @@
                                             </ul>
 										</li>
 										@else
-										<li><a data-rel="loginModal" href=""> Login </a></li>
+										<li><a data-rel="loginModal" href=""> Đăng nhập </a></li>
 										@endif
 									</ul>
 								</div>

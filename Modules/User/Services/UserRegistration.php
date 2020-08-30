@@ -40,9 +40,9 @@ class UserRegistration
         if ($this->hasProfileData()) {
             $this->createProfileForUser($user);
         }
-
+        
         // $this->assignUserToUsersGroup($user);    
-        $this->assignUserToShopsGroup($user);
+        // $this->assignUserToShopsGroup($user);
 
         event(new UserHasRegistered($user));
         return $user;

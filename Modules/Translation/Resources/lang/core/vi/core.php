@@ -1,7 +1,10 @@
 <?php
 
 return [
-    
+    'modal' => [
+        'title' => 'Xác nhận xoá ?',
+        'confirmation-message' => 'Bạn có muốn xoá không?',
+    ],
     'table' => [
         'created at' => 'Tạo vào',
         'updated at' => 'Cập nhật vào',
@@ -27,18 +30,18 @@ return [
         'hungarian' => 'Magyar',
     ],
     'button' => [
-        'cancel' => 'Cancel',
-        'create' => 'Create',
-        'update' => 'Update',
-        'delete' => 'Delete',
-        'reset' => 'Reset',
-        'see' => 'See',
+        'cancel' => 'Huỷ',
+        'create' => 'Tạo',
+        'update' => 'Cập nhật',
+        'delete' => 'Xoá',
+        'reset' => 'Làm mới',
+        'see' => 'Xem',
         'visualize' => 'Visualize',
         'update and back' => 'Update and go back',
     ],
-    'save' => 'Save',
-    'confirm' => 'Confirm',
-    'move' => 'Move',
+    'save' => 'Lưu',
+    'confirm' => 'Chấp nhận',
+    'move' => 'Di chuyển',
     'widget' => 'Widget',
     'widgets' => 'Widgets',
     'breadcrumb' => [
@@ -58,10 +61,10 @@ return [
         'sign out' => 'Sign out',
     ],
     'messages' => [
-        'resource created' => ':name successfully created.',
-        'resource not found' => ':name not found.',
-        'resource updated' => ':name successfully updated.',
-        'resource deleted' => ':name successfully deleted.',
+        'resource created' => ':name tạo thanh công.',
+        'resource not found' => 'Không tìm thấy :name.',
+        'resource updated' => ':name cập nhật thành công.',
+        'resource deleted' => ':name cập nhật thất bại.',
     ],
     'back' => 'Back',
     'back to index' => 'Back to :name index',

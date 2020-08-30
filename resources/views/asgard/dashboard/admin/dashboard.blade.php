@@ -17,13 +17,17 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <h3 class="box-title">
-                            @setting('dashboard::welcome-title')
+                            {{-- @setting('dashboard::welcome-title') --}}
+                            Chào mừng đến với CMS
                         </h3>
                     </div>
                     <div class="box-body">
-                        <p>@setting('dashboard::welcome-description')</p>
+                        <p>
+                            {{-- @setting('dashboard::welcome-description') --}}
+                            Đây là CMS dành cho Admin
+                        </p>
                     </div>
-                    @if (setting('core::site-name') === '')
+                    {{-- @if (setting('core::site-name') === '')
                     <div class="box-footer">
                         <a class="btn btn-primary btn-flat" href="{{ route('dashboard.module.settings', 'core') }}">
                             <i class="fa fa-cog"></i> {{ trans('dashboard::dashboard.configure your website') }}
@@ -36,7 +40,7 @@
                         </a>
                     </div>
                     @endif
-                </div>
+                </div> --}}
             @endif
         </div>
     </div>

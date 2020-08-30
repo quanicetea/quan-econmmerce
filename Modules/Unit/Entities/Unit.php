@@ -14,6 +14,6 @@ class Unit extends Model
 
     //một đơn vị có thể dùng cho nhiều sản phẩm
     public function products(){
-    	return $this->hasMany(Product::class,'unit', 'id');
+    	return $this->hasMany(Product::class, 'unit_id');
     }
 }

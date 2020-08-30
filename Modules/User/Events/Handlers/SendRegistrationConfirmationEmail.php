@@ -30,6 +30,8 @@ class SendRegistrationConfirmationEmail
 
         $activationCode = $this->auth->createActivation($user);
 
+        // return redirect()->route('activate.get',[$user->id,$activationCode]);
+
         $this->mail->to($user->email)->send(new WelcomeEmail($user, $activationCode));
     }
 }

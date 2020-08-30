@@ -1,7 +1,7 @@
 @extends('site::site.layout.master')
 @section('content')
 {{-- Sản phẩm nổi bậc  --}}
-<div class="container">
+{{-- <div class="container">
     <div class="row row-fluid pt-6 pb-6">
         <div class="col-sm-3">
             <div class="box-ft box-ft-5 mb-3">
@@ -67,12 +67,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- End of sản phẩm nổi bậc  --}}
 
-{{-- Sản phẩm mới  done--}}
-<div class="container">
-    <div class="row row-fluid mb-10">
+{{-- <div class="container">
+    <div class="row row-fluid mb-10 pt-6">
         <div class="col-sm-12">
             <div class="caroufredsel product-slider nav-position-center" data-height="variable" data-visible-min="1" data-responsive="1" data-infinite="1" data-autoplay="0">
                 <div class="product-slider-title">
@@ -81,7 +80,6 @@
                 <div class="caroufredsel-wrap">
                     <div class="commerce columns-4">
                         <ul class="products columns-4" data-columns="4">
-                            {{-- Lấy 12 sản phẩm mới nhất trong DB show ra  --}}
                             @foreach($products as $product)
                                 <li class="product product-no-border style-2">
                                     <div class="product-container">
@@ -126,94 +124,8 @@
                                         </figure>
                                     </div>
                                 </li>
-                                {{-- <li class="product product-no-border style-2">
-                                    <div class="product-container">
-                                        <figure>
-                                            <div class="product-wrap">
-                                                <div class="product-images">
-                                                    <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
-                                                        <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
-                                                    </div>
-                                                    <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
-                                                        <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <figcaption>
-                                                <div class="info-meta clearfix">
-                                                    <div>
-                                                        {{$product->user->first_name}}  {{$product->user->last_name}}
-                                                    </div>
-                                                </div>
-                                                <div class="shop-loop-product-info">
-                                                    <div class="info-content-wrap">
-                                                        <h3 class="product_title">
-                                                            <a href="shop-detail-1.html">{{$product->name}}</a>
-                                                        </h3>
-                                                        <div class="info-price">
-                                                            <span class="price">
-                                                                <ins><span class="amount">{{number_format($product->price),0,',','.'}} VND</span></ins>
-                                                            </span>
-                                                        </div>
-                                                        <div class="loop-action">
-                                                            <div class="loop-add-to-cart">
-                                                                <input type="hidden" value="{{$product->unique_id}}">
-                                                                <a class="add_to_cart_button">
-                                                                    Thêm vào giỏ hàng nè
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </li>
-                                <li class="product product-no-border style-2">
-                                    <div class="product-container">
-                                        <figure>
-                                            <div class="product-wrap">
-                                                <div class="product-images">
-                                                    <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
-                                                        <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
-                                                    </div>
-                                                    <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
-                                                        <a href="shop-detail-1.html"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <figcaption>
-                                                <div class="info-meta clearfix">
-                                                    <div>
-                                                        {{$product->user->first_name}}  {{$product->user->last_name}}
-                                                    </div>
-                                                </div>
-                                                <div class="shop-loop-product-info">
-                                                    <div class="info-content-wrap">
-                                                        <h3 class="product_title">
-                                                            <a href="shop-detail-1.html">{{$product->name}}</a>
-                                                        </h3>
-                                                        <div class="info-price">
-                                                            <span class="price">
-                                                                <ins><span class="amount">{{number_format($product->price),0,',','.'}} VND</span></ins>
-                                                            </span>
-                                                        </div>
-                                                        <div class="loop-action">
-                                                            <div class="loop-add-to-cart">
-                                                            <input type="hidden" value="{{$product->unique_id}}">
-                                                            <a class="add_to_cart_button">
-                                                                    Thêm vào giỏ hàng luôn
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </li> --}}
+
                             @endforeach
-                            {{-- End of Lấy 12 sản phẩm mới nhất trong DB show ra  --}}
                         </ul>
                     </div>
                     <a href="#" class="caroufredsel-prev"></a>
@@ -222,17 +134,514 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<div class="pt-6"></div>
+{{-- Sản phẩm mới  done--}}
+@foreach($categories as $category)
+    @if(count($category->products->where('status','=',1))>0)
+        @if(count($category->products->where('status','=',1)->take(8))>=4)
+            <div class="container">
+                <div class="row row-fluid mb-10">
+                    <div class="col-sm-12">
+                        <div class="caroufredsel product-slider nav-position-center" data-height="variable" data-visible-min="1" data-responsive="1" data-infinite="1" data-autoplay="0">
+                            <div class="product-slider-title">
+                            <h3 class="el-heading pt-1">{{$category->name}}</h3>
+                            </div>
+                            <div class="caroufredsel-wrap">
+                                <div class="commerce columns-4">
+                                    <ul class="products columns-4" data-columns="4">
+                                        @foreach($category->products->take(8)->where('status','=',1) as $product)
+                                            <li class="product product-no-border style-2">
+                                                <div class="product-container">
+                                                    <figure>
+                                                        <div class="product-wrap">
+                                                            <div class="product-images">
+                                                                <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                                    <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                                </div>
+                                                                <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                                    <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <figcaption>
+                                                            {{-- <div class="info-meta clearfix">
+                                                                <div>
+                                                                    {{$product->user->first_name}}  {{$product->user->last_name}}
+                                                                </div>
+                                                            </div> --}}
+                                                            <div class="shop-loop-product-info">
+                                                                <div class="info-content-wrap">
+                                                                    <h3 class="product_title">
+                                                                        <a href="{{route('site.detail',$product->unique_id)}}">{{$product->name}}</a>
+                                                                    </h3>
+                                                                    <div class="info-price">
+                                                                        <span class="price">
+                                                                            <ins><span class="amount">{{number_format($product->price),0,',','.'}} VND</span></ins>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="loop-action">
+                                                                        <div class="loop-add-to-cart">
+                                                                            <input type="hidden" value="{{$product->unique_id}}">
+                                                                            <a class="add_to_cart_button">
+                                                                                Thêm vào giỏ hàng đi
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <a href="#" class="caroufredsel-prev"></a>
+                                <a href="#" class="caroufredsel-next"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+        <div class="container">
+            <div class="row row-fluid mb-10">
+                <div class="col-sm-12">
+                    <div class="caroufredsel product-slider nav-position-center" data-height="variable" data-visible-min="1" data-responsive="1" data-infinite="1" data-autoplay="0">
+                        <div class="product-slider-title">
+                        <h3 class="el-heading pt-1">{{$category->name}}</h3>
+                        </div>
+                        <div class="caroufredsel-wrap">
+                            <div class="commerce columns-4">
+                                <ul class="products columns-4" data-columns="4">
+                                    {{-- case 1 product --}}
+                                    @if(count($category->products->take(8)->where('status','=',1))==1)
+                                    @foreach($category->products->take(8)->where('status','=',1) as $product)
+                                        
+                                        <li class="product product-no-border style-2">
+                                            <div class="product-container">
+                                                <figure>
+                                                    <div class="product-wrap">
+                                                        <div class="product-images">
+                                                            <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                                <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                            </div>
+                                                            <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                                <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <figcaption>
+                                                        {{-- <div class="info-meta clearfix">
+                                                            <div>
+                                                                {{$product->user->first_name}}  {{$product->user->last_name}}
+                                                            </div>
+                                                        </div> --}}
+                                                        <div class="shop-loop-product-info">
+                                                            <div class="info-content-wrap">
+                                                                <h3 class="product_title">
+                                                                    <a href="{{route('site.detail',$product->unique_id)}}">{{$product->name}}</a>
+                                                                </h3>
+                                                                <div class="info-price">
+                                                                    <span class="price">
+                                                                        <ins><span class="amount">{{number_format($product->price),0,',','.'}} VND</span></ins>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="loop-action">
+                                                                    <div class="loop-add-to-cart">
+                                                                        <input type="hidden" value="{{$product->unique_id}}">
+                                                                        <a class="add_to_cart_button">
+                                                                            Thêm vào giỏ hàng đi
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                        </li>
+                                        
+                                    {{-- end case list has one product --}}
+                                    @endforeach
+                                    <li style="display:none" class="product product-no-border style-2">
+                                        <div class="product-container">
+                                            <figure>
+                                                <div class="product-wrap">
+                                                    <div class="product-images">
+                                                        <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                        <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="info-meta clearfix">
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="shop-loop-product-info">
+                                                        <div class="info-content-wrap">
+                                                            <h3 class="product_title">
+                                                                <a href="#"></a>
+                                                            </h3>
+                                                            <div class="info-price">
+                                                                <span class="price">
+                                                                    <ins><span class="amount"></span></ins>
+                                                                </span>
+                                                            </div>
+                                                            <div class="loop-action">
+                                                                <div class="loop-add-to-cart">
+                                                                    <input type="hidden" value="">
+                                                                    <a class="add_to_cart_button">
+                                                                        Thêm vào giỏ hàng đi
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                    <li style="display:none" class="product product-no-border style-2">
+                                        <div class="product-container">
+                                            <figure>
+                                                <div class="product-wrap">
+                                                    <div class="product-images">
+                                                        <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                        <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="info-meta clearfix">
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="shop-loop-product-info">
+                                                        <div class="info-content-wrap">
+                                                            <h3 class="product_title">
+                                                                <a href="#"></a>
+                                                            </h3>
+                                                            <div class="info-price">
+                                                                <span class="price">
+                                                                    <ins><span class="amount"></span></ins>
+                                                                </span>
+                                                            </div>
+                                                            <div class="loop-action">
+                                                                <div class="loop-add-to-cart">
+                                                                    <input type="hidden" value="">
+                                                                    <a class="add_to_cart_button">
+                                                                        Thêm vào giỏ hàng đi
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                    <li style="display:none" class="product product-no-border style-2">
+                                        <div class="product-container">
+                                            <figure>
+                                                <div class="product-wrap">
+                                                    <div class="product-images">
+                                                        <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                        <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="info-meta clearfix">
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="shop-loop-product-info">
+                                                        <div class="info-content-wrap">
+                                                            <h3 class="product_title">
+                                                                <a href="#"></a>
+                                                            </h3>
+                                                            <div class="info-price">
+                                                                <span class="price">
+                                                                    <ins><span class="amount"></span></ins>
+                                                                </span>
+                                                            </div>
+                                                            <div class="loop-action">
+                                                                <div class="loop-add-to-cart">
+                                                                    <input type="hidden" value="">
+                                                                    <a class="add_to_cart_button">
+                                                                        Thêm vào giỏ hàng đi
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                    @endif
+
+                                    {{-- case 2 product --}}
+                                    @if(count($category->products->take(8)->where('status','=',1))==2)
+                                    @foreach($category->products->take(8)->where('status','=',1) as $product)   
+                                        <li class="product product-no-border style-2">
+                                            <div class="product-container">
+                                                <figure>
+                                                    <div class="product-wrap">
+                                                        <div class="product-images">
+                                                            <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                                <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                            </div>
+                                                            <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                                <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <figcaption>
+                                                        {{-- <div class="info-meta clearfix">
+                                                            <div>
+                                                                {{$product->user->first_name}}  {{$product->user->last_name}}
+                                                            </div>
+                                                        </div> --}}
+                                                        <div class="shop-loop-product-info">
+                                                            <div class="info-content-wrap">
+                                                                <h3 class="product_title">
+                                                                    <a href="{{route('site.detail',$product->unique_id)}}">{{$product->name}}</a>
+                                                                </h3>
+                                                                <div class="info-price">
+                                                                    <span class="price">
+                                                                        <ins><span class="amount">{{number_format($product->price),0,',','.'}} VND</span></ins>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="loop-action">
+                                                                    <div class="loop-add-to-cart">
+                                                                        <input type="hidden" value="{{$product->unique_id}}">
+                                                                        <a class="add_to_cart_button">
+                                                                            Thêm vào giỏ hàng đi
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                    <li style="display:none" class="product product-no-border style-2">
+                                        <div class="product-container">
+                                            <figure>
+                                                <div class="product-wrap">
+                                                    <div class="product-images">
+                                                        <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                        <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="info-meta clearfix">
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="shop-loop-product-info">
+                                                        <div class="info-content-wrap">
+                                                            <h3 class="product_title">
+                                                                <a href="#"></a>
+                                                            </h3>
+                                                            <div class="info-price">
+                                                                <span class="price">
+                                                                    <ins><span class="amount"></span></ins>
+                                                                </span>
+                                                            </div>
+                                                            <div class="loop-action">
+                                                                <div class="loop-add-to-cart">
+                                                                    <input type="hidden" value="">
+                                                                    <a class="add_to_cart_button">
+                                                                        Thêm vào giỏ hàng đi
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                    <li style="display:none" class="product product-no-border style-2">
+                                        <div class="product-container">
+                                            <figure>
+                                                <div class="product-wrap">
+                                                    <div class="product-images">
+                                                        <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                        <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="info-meta clearfix">
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="shop-loop-product-info">
+                                                        <div class="info-content-wrap">
+                                                            <h3 class="product_title">
+                                                                <a href="#"></a>
+                                                            </h3>
+                                                            <div class="info-price">
+                                                                <span class="price">
+                                                                    <ins><span class="amount"></span></ins>
+                                                                </span>
+                                                            </div>
+                                                            <div class="loop-action">
+                                                                <div class="loop-add-to-cart">
+                                                                    <input type="hidden" value="">
+                                                                    <a class="add_to_cart_button">
+                                                                        Thêm vào giỏ hàng đi
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                    @endif
+                                    {{-- case 3 product --}}
+                                    @if(count($category->products->take(8)->where('status','=',1))==3)
+                                    @foreach($category->products->take(8)->where('status','=',1) as $product)   
+                                        <li class="product product-no-border style-2">
+                                            <div class="product-container">
+                                                <figure>
+                                                    <div class="product-wrap">
+                                                        <div class="product-images">
+                                                            <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                                <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                            </div>
+                                                            <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                                <a href="{{route('site.detail',$product->unique_id)}}"><img width="450" height="450" src="{{$product->image}}" alt=""/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <figcaption>
+                                                        {{-- <div class="info-meta clearfix">
+                                                            <div>
+                                                                {{$product->user->first_name}}  {{$product->user->last_name}}
+                                                            </div>
+                                                        </div> --}}
+                                                        <div class="shop-loop-product-info">
+                                                            <div class="info-content-wrap">
+                                                                <h3 class="product_title">
+                                                                    <a href="{{route('site.detail',$product->unique_id)}}">{{$product->name}}</a>
+                                                                </h3>
+                                                                <div class="info-price">
+                                                                    <span class="price">
+                                                                        <ins><span class="amount">{{number_format($product->price),0,',','.'}} VND</span></ins>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="loop-action">
+                                                                    <div class="loop-add-to-cart">
+                                                                        <input type="hidden" value="{{$product->unique_id}}">
+                                                                        <a class="add_to_cart_button">
+                                                                            Thêm vào giỏ hàng đi
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </figcaption>
+                                                </figure>
+                                            </div>
+                                        </li>  
+                                    @endforeach
+                                    <li style="display:none" class="product product-no-border style-2">
+                                        <div class="product-container">
+                                            <figure>
+                                                <div class="product-wrap">
+                                                    <div class="product-images">
+                                                        <div class="shop-loop-thumbnail shop-loop-front-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                        <div class="shop-loop-thumbnail shop-loop-back-thumbnail">
+                                                            <a href="#"><img width="450" height="450" src="#" alt=""/></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="info-meta clearfix">
+                                                        <div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="shop-loop-product-info">
+                                                        <div class="info-content-wrap">
+                                                            <h3 class="product_title">
+                                                                <a href="#"></a>
+                                                            </h3>
+                                                            <div class="info-price">
+                                                                <span class="price">
+                                                                    <ins><span class="amount"></span></ins>
+                                                                </span>
+                                                            </div>
+                                                            <div class="loop-action">
+                                                                <div class="loop-add-to-cart">
+                                                                    <input type="hidden" value="">
+                                                                    <a class="add_to_cart_button">
+                                                                        Thêm vào giỏ hàng đi
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </div>
+                            <a href="#" class="caroufredsel-prev"></a>
+                            <a href="#" class="caroufredsel-next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+    @endif
+@endforeach
 {{-- End of sản phẩm mới  --}}
 
 {{-- Vài sản phẩm mới theo danh mục (khoảng 4 cái thôi)  --}}
-<div class="container">
+{{-- <div class="container">
     <div class="row row-fluid mt-2">
         <div class="col-sm-12">
             <div data-layout="masonry" data-masonry-column="4" class="commerce products-masonry masonry">
                 <div class="masonry-filter">
                     <div class="filter-action filter-action-center">
-                        {{-- Show một vài danh mục ra  --}}
                         <ul data-filter-key="filter">
                             @foreach($categories as $category)
                             <li>
@@ -241,11 +650,9 @@
                             @endforeach
                             
                         </ul>
-                        {{--ENd of Show một vài danh mục ra  --}}
                     </div>
                 </div>
                 <div class="products-masonry-wrap">
-                    {{-- Chỗ này ajax khoảng 8 sản phẩm theo mỗi danh mục ra  --}}
                     <ul class="products masonry-products row masonry-wrap">
                         <li class="product masonry-item product-no-border style-2 col-md-3 col-sm-6 maecenas donec">
                             <div class="product-container">
@@ -662,12 +1069,12 @@
                             </div>
                         </li>
                     </ul>
-                    {{--End of Chỗ này ajax khoảng 8 sản phẩm theo mỗi danh mục ra  --}}
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
 {{-- End of Vài sản phẩm mới theo danh mục (khoảng 4 cái thôi)  --}}
 @endsection
 

@@ -95,6 +95,10 @@ class CategoryController extends AdminBaseController
      */
     public function destroy(Category $category)
     {
+        if(count($category->products)>0){
+            return redirect()->route('admin.category.category.index')
+            ->withError('Không thể xoá danh mục vì đã có sản phẩm', ['name' => trans('category::categories.title.categories')]); 
+        }
         $this->category->destroy($category);
 
         return redirect()->route('admin.category.category.index')

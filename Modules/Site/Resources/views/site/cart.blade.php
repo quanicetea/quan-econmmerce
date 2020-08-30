@@ -167,7 +167,7 @@
 			url: '{{route('site.removecart')}}',
 			type: 'GET',
 			dataType: 'json',
-			data: {product_id: product_id},
+			data: {product_id: product_id, qty: +1},
 		})
 		.done(function(data) {
             console.log("đã xoá ")

@@ -109,9 +109,9 @@
                                     <div class="form-row">
                                         <button class="btn btn-outline rounded" type="submit">Save</button>
                                     </div>
-                                    <div class="lost_password">
+                                    {{-- <div class="lost_password">
                                         <a href="#">Lost your password?</a>
-                                    </div>
+                                    </div> --}}
                                 </form>
                             </div>
                             <div class="col-sm-3"></div>

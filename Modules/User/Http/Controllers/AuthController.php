@@ -12,7 +12,7 @@ use Modules\User\Http\Requests\ResetCompleteRequest;
 use Modules\User\Http\Requests\ResetRequest;
 use Modules\User\Services\UserRegistration;
 use Modules\User\Services\UserResetter;
-
+use Illuminate\Http\Request;
 class AuthController extends BasePublicController
 {
     use DispatchesJobs;
@@ -53,12 +53,13 @@ class AuthController extends BasePublicController
 
     public function postRegister(RegisterRequest $request)
     {
+        // dd($request->all());
         app(UserRegistration::class)->register($request->all());
 
         return redirect()->route('site.get.login')
         ->withSuccess(trans('Đăng ký thành công. Kiểm tra email để kích hoạt tài khoản'));
-        return redirect()->route('login')
-            ->withSuccess(trans('user::messages.account created check email for activation'));
+        // return redirect()->route('login')
+        //     ->withSuccess(trans('user::messages.account created check email for activation'));
     }
 
     public function getLogout()

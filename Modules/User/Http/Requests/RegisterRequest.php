@@ -16,6 +16,10 @@ class RegisterRequest extends FormRequest
         return [
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:3',
+            'phone' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
         ];
     }
 
@@ -31,6 +35,8 @@ class RegisterRequest extends FormRequest
 
     public function messages()
     {
-        return [];
+        return [
+            'email.unique' => 'email đã tồn tại',
+        ];
     }
 }

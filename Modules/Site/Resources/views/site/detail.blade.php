@@ -135,14 +135,14 @@
                                             <div class="product_meta">
                                                 <span class="posted_in">
                                                     Category: 
-                                                    <a href="#">{{$product->category->name}}</a>
+                                                <a href="{{route('site.product.category',$product->category->slug)}}">{{$product->category->name}}</a>
                                                 </span>
-                                                <span class="posted_in">
+                                                {{-- <span class="posted_in">
                                                     Manufacturer: 
                                                     <a href="#">{{$product->manufacturer->name}}</a>
-                                                </span>
+                                                </span> --}}
                                             </div>
-                                            <div class="share-links">
+                                            {{-- <div class="share-links">
                                                 <div class="share-icons">
                                                     <span class="facebook-share">
                                                         <a href="#" title="Share on Facebook">
@@ -165,7 +165,7 @@
                                                         </a>
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div> 
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                         <div class="tabbable commerce-tabs">
                                             <ul class="nav nav-tabs">
                                                 <li class="vc_tta-tab active">
-                                                    <a data-toggle="tab" href="#tab-1" aria-expanded="true">Description</a>
+                                                    <a data-toggle="tab" href="#tab-1" aria-expanded="true">Mô tả sản phẩm</a>
                                                 </li>
                                                 {{-- <li class="vc_tta-tab">
                                                     <a data-toggle="tab" href="#tab-2" aria-expanded="false">Reviews</a>
@@ -299,7 +299,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="container">
+                            {{-- <div class="container">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="related products">
@@ -520,7 +520,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div> 
                         {{-- <div class="woo-instagram">
                             <h3 class="heading-center-custom">

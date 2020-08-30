@@ -95,6 +95,11 @@ class ManufacturerController extends AdminBaseController
      */
     public function destroy(Manufacturer $manufacturer)
     {
+        // dd($manufacturer->products);
+        if(count($manufacturer->products)>0){
+            return redirect()->route('admin.manufacturer.manufacturer.index')
+            ->withError('Không thể xoá nhà sản xuất vì đã có sản phẩm', ['name' => trans('manufacturer::manufacturers.title.manufacturers')]); 
+        }
         $this->manufacturer->destroy($manufacturer);
 
         return redirect()->route('admin.manufacturer.manufacturer.index')

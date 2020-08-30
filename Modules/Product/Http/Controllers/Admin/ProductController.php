@@ -140,6 +140,9 @@ class ProductController extends AdminBaseController
         $product = $this->product->getData($request);
         
         return DataTables::of($product)
+            // ->editColumn('name',function($item){
+            //     return $item->name.' '.$item->category->name;
+            // })
             ->editColumn('category', function ($item){ 
                 return $item->category->name??"";
             })
@@ -147,7 +150,7 @@ class ProductController extends AdminBaseController
                 return $item->manufacturer->name??"";
             })
             ->editColumn('unit', function ($item){ 
-                return $item->getUnit->unit;
+                return $item->getUnit->unit??"";
             })
             ->addColumn('status', function ($item){ 
                 return ($item->status == Product::ACTIVE) ? '<span class="label label-success">'. trans('product::products.form.active') .'</span>' : '<span class="label label-default">'.trans('product::products.form.unactive').'</span>';
